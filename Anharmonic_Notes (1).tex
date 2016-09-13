@@ -1,0 +1,1155 @@
+\documentclass{article}
+\newcommand{\lrbrack}[2]{\lbrack #1 , #2 \rbrack}
+\newcommand{\wbc}[3]{\left\{\begin{array}{cc}
+		{#1}\\{#2}
+	\end{array} \right\}_{#3}}
+\newcommand{\cc}[3]{{#1}!{#2 \choose #1}{#3 \choose #1}}
+%\cc is for commutator constants
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+
+
+\title{Notes and Important Formulae For Anharmonic Oscillators}
+\author{GCA, ELR}
+
+
+
+\begin{document}
+\maketitle
+
+
+In these notes we will begin setting up a more complete structure for computing commutators of Lie Algebra elements from Lie Algebras arising from the quartic anharmonic oscillator.\\
+
+
+
+
+\section*{Notations}
+
+We will be using a Planck scale for the duration of this paper, meaning
+\[
+\hbar = \omega = e = 1
+\]
+
+This leads us to using 
+\[
+p = -i \frac{d}{dx} = -id
+\]
+
+In particular, to makes things particularly easier:
+\[
+a = \frac{1}{\sqrt{2}}(x+d), b = a^{\dagger} = \frac{1}{\sqrt{2}}(x-d)
+\]	
+	
+	
+From here on we will use $a$ and $b$ rather than $a$ and $a^{\dagger}$.  With the standard relation
+\[
+[a,b]=1.
+\]	
+	
+	
+Our normal ordering is to annihilate as many energy levels as possible first, thus we wish the write every element as
+\[
+b^ka^j
+\] 	
+
+
+The Lie Algebras we'll be using as somewhat contrived, but are built as follows:  We have
+\[
+H_0 = ba, H_4 = H_0 + \lambda x^4
+\]
+
+Then all the other elements in our algebra are produced by taking commutators and more commutators.  We will filter our algebra by powers of $\lambda$ so that we may use this in our energy calculations.  It is, afterall, only intuitive that added a ``larger" potential energy term $\lambda x^4$ that the total energy should go up with the potential energy.  For this reason we will expand our series in $\lambda$.
+
+Our main elements will look like such
+\[
+L_m^n = b^n a^m - b^m a^n, \bar{L}_m^n = b^n a^m + b^m a^n, \textrm{ where } n>m
+\]
+
+Then our filtration becomes
+\[
+\{L_{(j)}\}_{j=1}^{\infty} 
+\]
+Where each $L_{(j)}$ is gotten by taking commutators until we have exactly a $\lambda^j$ on each $L_m^n$.
+
+In this case
+\[
+L_{(1)} = \{ L_0^4, L_1^3, L_0^2, \bar{L}_0^4, \bar{L}_1^3, \bar{L}_0^2\}
+\]
+
+It should be noted that if $L_m^n \in L_{(j)}$ then $\bar{L}_m^n \in  L_{(j)}$ since
+\[
+[H_0, L_m^n] = (n-m) \bar{L}_m^n
+\]
+
+and likewise
+
+\[
+[H_0, \bar{L}_m^n] = (n-m) {L}_m^n
+\]
+
+We shall then have structure constants $c$ and $\xi$ and $\eta$ in our lie algebra so that
+\[
+[L_m^n,L_i^j] = \sum c_{mir}^{njs} L_r^s + \sum \xi_{mir}^{njs} \bar{L}_r^s + \sum \eta_n N^n
+\]
+
+or
+
+\[
+[L_m^n,\bar{L}_i^j] = \sum c_{mir}^{njs} L_r^s + \sum \xi_{mir}^{njs} \bar{L}_r^s + \sum \eta_n N^n
+\]
+
+or
+
+\[
+[\bar{L}_m^n,\bar{L}_i^j] = \sum c_{mir}^{njs} L_r^s + \sum \xi_{mir}^{njs} \bar{L}_r^s + \sum \eta_n N^n
+\]
+
+$N$ is the number operator
+\[
+N = ba = H_0 -\frac{1}{2}
+\]
+
+
+
+Fortunately in this case we have an interesting symmetry that holds in general. Let $\mathcal{L} = \{ L_i^j\}$ and $\bar{\mathcal{L}} = \{ \bar{L}_i^j \}$ 
+
+Then 
+
+\begin{eqnarray*}
+[\mathcal{L},\mathcal{L}] & \subseteq & \mathcal{L}\\
+\lbrack \mathcal{L},\bar{\mathcal{L}} \rbrack & \subseteq & \bar{\mathcal{L}}\\
+\lbrack \bar{\mathcal{L}},\bar{\mathcal{L}} \rbrack & \subseteq & \bar{\mathcal{L}}
+\end{eqnarray*}
+
+\section*{Some Things We Know}
+
+Let's write down our Lie Algebra Filtration...
+
+First of all, because of the presence of $L_0^2$ and $L_0^4$ in $L_{(1)}$ we have an order two operator going into an order -2 operation.  $L_0^2$ will ensure
+\[
+L_{(i)} \subseteq L_{(j)} \textrm{ for all } i<j.
+\]
+
+Additionally, because $H_0$ has no $\lambda$ attached to it, and it ``exchanges" $\mathcal{L}$ with $\bar{\mathcal{L}}$ we only need to write the $L_i^j$ terms.
+
+
+For the purposes of these notes, we'll only write the ``new" elements of each $L_{(i)}$ as we see them.
+
+\[
+L_{(1)} = \{L_0^2, L_1^3, L_0^4\}
+\]
+
+\[
+L_{(2)} = \{L_0^6, L_2^4\}
+\]
+
+We expect that $L_1^5$ should show up as well, but the only way to produce this element is by $[L_1^3,L_1^3]$ which is zero.  So it doesn't make an appearance yet.
+
+\[
+L_{(3)} = \{L_0^8,L_2^6,L_3^5,L_1^5 \}
+\]
+
+In general, when we compute $[L_{(i)},L_{(j)}]$ we get elements that land in $L_{(i+j)}$  So the general form of $L_{(j)}$ will be
+
+\[
+L_{(j)} = \{L_0^{2j+2},L_1^{2j+1},\dots, L_{j-1}^{j+1}\} \cup L_{(j-1)}
+\] 
+in terms of new elements.  The element $L_1^{2j+1}$ however, may wait to make an appearance until the next step in the filtration as we see in $L_{(2)}$ to $L_{(3)}$.
+
+
+\section*{The Generators}
+
+By the setup above we know that $L_0^2, \bar{L}_0^2, L_1^3, \bar{L}_1^3, L_0^4,\bar{L}_0^4$ will generate every Lie algebra element via commutators and the derived series (left and right derived series).  So let's take a moment to simply catalog all of those commutators.
+
+\begin{eqnarray*}
+\lrbrack{L_0^2}{\bar{L}_0^2} &=& 0 + \lrbrack{b^2}{a^2} - \lrbrack{a^2}{b^2} + 0\\
+& = & - 2 \lrbrack{a^2}{b^2}\\
+& = & -2(1!{2 \choose 1}^2 ba + 2!{2 \choose 2}^2)\\
+& = & -2(4ba + 2)\\
+& = & -8 N - 4
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+	\lrbrack{L_0^2}{L_1^3} &=&  \lrbrack{b^2}{b^3 a}- \lrbrack{b^2}{b a^3} - \lrbrack{a^2}{b^3 a} + \lrbrack{a^2}{b a^3}\\
+	& = &  b^3 \lrbrack{b^2}{a}- b \lrbrack{b^2}{a^3} - \lrbrack{a^2}{b^3 }a + \lrbrack{a^2}{b }a^3\\
+	& = &  -b^3 \lrbrack{a}{b^2} + b \lrbrack{a^3}{b^2} - \lrbrack{a^2}{b^3 }a + \lrbrack{a^2}{b }a^3\\
+	& = & -b^3(2 b) - b(1!{3 \choose 1}{2\choose 1}b a^2 + 2!{3 \choose 2}{2\choose 2}a) )\\
+	& - &  (1!{3 \choose 1}{2\choose 1}b^2 a + 2!{3 \choose 2}{2\choose 2}b)) - (2a)a^3\\
+	& = & -2 L_0^4 - 2(6 b^2 a^2 + 6 ba) 
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+	\lrbrack{L_0^2}{\bar{L}_1^3} &=&  \lrbrack{b^2}{b^3 a}+ \lrbrack{b^2}{b a^3} - \lrbrack{a^2}{b^3 a} - \lrbrack{a^2}{b a^3}\\
+	& = &  b^3 \lrbrack{b^2}{a} + b \lrbrack{b^2}{a^3} - \lrbrack{a^2}{b^3 }a - \lrbrack{a^2}{b }a^3\\
+	& = &  -b^3 \lrbrack{a}{b^2} - b \lrbrack{a^3}{b^2} - \lrbrack{a^2}{b^3 }a - \lrbrack{a^2}{b }a^3\\
+	& = & -b^3(2 b) - b(1!{3 \choose 1}{2\choose 1}b a^2 + 2!{3 \choose 2}{2\choose 2}a) )\\
+	& - &  (1!{3 \choose 1}{2\choose 1}b^2 a + 2!{3 \choose 2}{2\choose 2}b)) - (2a)a^3\\
+	& = & -2 \bar{L}_0^4 - 2(6 b^2 a^2 + 6 ba) 
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+\lrbrack{L_0^2}{L_0^4} & = & -\lrbrack{b^2}{a^4} - \lrbrack{a^2}{b^4} \\
+                       & = & \lrbrack{a^4}{b^2} - \lrbrack{a^2}{b^2} \\
+                       & = & (1!{4 \choose 1}{2 \choose 1} ba^3 + 2!{4\choose 2}{2 \choose 2} a^2) - (1!{4 \choose 1}{2 \choose 1} b^3a + 2!{4\choose 2}{2 \choose 2} b^2)\\
+                       & = & -8 L_1^3 - 12 L_0^2
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+	\lrbrack{L_0^2}{\bar{L}_0^4} & = & +\lrbrack{b^2}{a^4} - \lrbrack{a^2}{b^4} \\
+	& = & -\lrbrack{a^4}{b^2} - \lrbrack{a^2}{b^2} \\
+	& = & -(1!{4 \choose 1}{2 \choose 1} ba^3 + 2!{4\choose 2}{2 \choose 2} a^2) - (1!{4 \choose 1}{2 \choose 1} b^3a + 2!{4\choose 2}{2 \choose 2} b^2)\\
+	& = & -8 \bar{L}_1^3 - 12 \bar{L}_0^2
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	\lrbrack{L_1^3}{\bar{L}_1^3} & = & 0 +\lrbrack{b^3 a}{b a^3} - \lrbrack{b a^3}{b^3} + 0\\
+	                             & = & -2 \lrbrack{ba^3}{b^3 a}\\
+	                             & = & -2 (b\lrbrack{a^3}{b^3}a   + b^3 \lrbrack{a}{b} a^3)\\
+	                             & = & -2 b((1!{3\choose 1}^2 b^2a^2 + 2!{3\choose 2}^2 ba + 3!{3\choose 3}^2 )a) - 2 (b^3 (1) a^3)\\
+	                             & = & -2(9 b^3 a^3 + 18 b^2 a^2 + 6 ba - b^3 a^3)\\
+	                             & = & -16 b^3 a^3 - 36 b^2 a^2 - 12 ba
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\lrbrack{L_1^3}{L_0^4} & = & \lrbrack{b^3a }{b^4} - \lrbrack{b^3 a}{a^4} - \lrbrack{b a^3}{b^4} + \lrbrack{b a^3}{a^4}\\
+                       & = & b^3 \lrbrack{a}{b^4} + \lrbrack{a^4}{b^3}a - b \lrbrack{a^3}{b^4} - \lrbrack{a^4}{b} a^3\\
+                       & = & b^3(4b^3) + (1!{4\choose 1}{3\choose 1}b^2 a^3 + 2!{4\choose 2}{3\choose 2}b a^2 +  3!{4\choose 3}{3\choose 3}a)a\\
+                       &   & - b(1!{4\choose 1}{3\choose 1}b^3 a^2 + 2!{4\choose 2}{3\choose 2}b^2 a +  3!{4\choose 3}{3\choose 3}b) - (4a^3)a^3\\
+                       & = & 4 L_0^6 -  12 L_2^4 - 36 L_1^3 - 24 L_0^2
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+	\lrbrack{L_1^3}{\bar{L}_0^4} & = & \lrbrack{b^3a }{b^4} + \lrbrack{b^3 a}{a^4} - \lrbrack{b a^3}{b^4} - \lrbrack{b a^3}{a^4}\\
+	& = & b^3 \lrbrack{a}{b^4} - \lrbrack{a^4}{b^3}a - b \lrbrack{a^3}{b^4} + \lrbrack{a^4}{b} a^3\\
+	& = & b^3(4b^3) - (1!{4\choose 1}{3\choose 1}b^2 a^3 + 2!{4\choose 2}{3\choose 2}b a^2 +  3!{4\choose 3}{3\choose 3}a)a\\
+	&   & - b(1!{4\choose 1}{3\choose 1}b^3 a^2 + 2!{4\choose 2}{3\choose 2}b^2 a +  3!{4\choose 3}{3\choose 3}b) + (4a^3)a^3\\
+	& = & 4 \bar{L}_0^6 -  12 \bar{L}_2^4 - 36 \bar{L}_1^3 - 24 \bar{L}_0^2
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+\lrbrack{L_0^4}{\bar{L}_0^4} & = & -2 \lrbrack{a^4}{b^4}\\
+                             & = & -2 (1!{4\choose 1}^2 b^3 a^3 + 2!{4\choose 2}^2 b^2 a^2 + 3!{4\choose 3}^2 ba + 4!{4\choose 4}^2 )
+\end{eqnarray*}
+
+
+
+\section*{Some Random Useful Formulae from Before}
+
+
+\[
+[a^n, b^m] = \sum_{j=1}^{min(n,m)}j! {n\choose j}{m \choose j}b^{m-j}a^{n-j}
+\]
+
+\[
+(a+b)^n = \sum_{m=0}^{n} \sum_{k=0}^{min(m,n-m)} W(n,m,k)b^{m-k} a^{n-m-k}
+\]
+
+Where $W(n,m,k) = \wbc{n}{m}{k}$ is the Weyl binomial coefficient
+\[
+W(n,m,k) =\wbc{n}{m}{k} = \frac{n!}{2^k k! (m-k)!(n-m-k)!}
+\]
+
+We also have to deal with terms of the form $b^n a^n$ which become sums of number operators.
+
+Let $m>0$ then 
+\[
+b^m a^m = m! {N \choose m}
+\]
+
+
+By induction we have $ba = N$.  Now let's consider what happens when we add a single term to $b^k a^k$.
+\begin{eqnarray*}
+b^{k+1}a^{k+1} &=& b(b^k a)a^{k}\\ 
+&=& b(ab^{k} -kb^{k-1}) ) a^k\\
+&=& (ba)b^k a^k - k(b^k a^k) \\
+& = & (N-k) k!{N \choose k}\\
+& = & (k+1)! {N \choose k+1}
+\end{eqnarray*}
+
+
+Additionally let's recall
+\begin{equation}
+\lrbrack{H_0}{L_n^m} = (n-m) \bar{L}_n^m
+\end{equation}
+
+Similarly
+
+\begin{equation}
+\lrbrack{H_0}{\bar{L}_n^m} = (n-m) {L}_n^m
+\end{equation}
+
+
+Now let's look at what happens to higher orders of $b^na^n$ in commutators.
+
+\[
+\lrbrack{b^2 a^2}{b^n a^m} = 2(n-m)b^{n+1}a^{m+1} +2({n\choose 2}-{m\choose 2})b^n a^m
+\]
+
+Which suggests the formula
+
+\begin{equation}
+\lrbrack{b^2a^2}{L_m^n} = 2(n-m) \bar{L}_{m+1}^{n+1} + 2({n\choose 2}-{m\choose 2})\bar{L}_m^n
+\end{equation}
+
+
+Additionally for the next several items we have
+
+\begin{equation}
+\lrbrack{b^3a^3}{L_m^n} = 3(n-m)\bar{L}_{m+2}^{n+2} + 2\cdot 3 ({n\choose 2}-{m\choose 2})\bar{L}_{m+1}^{n+1} + 6({n\choose 3}-{m\choose 3})\bar{L}_m^n
+\end{equation}
+
+
+\begin{equation}
+\lrbrack{b^qa^q}{L_m^n} = \sum_{i=1}^{\min(m,q)} i!{q\choose i}\left({n\choose i}-{m\choose i}\right)\bar{L}_{m+q-i}^{n+q-i}
+\end{equation}
+
+Let's start computing some commutators and look for general patterns:
+\begin{eqnarray*}
+[L_0^2, L_m^n] & = & [b^2-a^2, b^n a^m - b^m a^n]\\
+=\lbrack b^2, b^n a^m \rbrack - \lbrack b^2, b^m a^n \rbrack & - & \lbrack a^2,b^n a^m \rbrack + \lbrack a^2, b^m a^n \rbrack \\
+=b^n\lrbrack{b^2}{a^m} - b^m \lrbrack{b^2}{a^n} & - & \lrbrack{a^2}{b^n} a^m + \lrbrack{a^2}{b^m} a^n\\
+=-b^n\lrbrack{a^m}{b^2} + b^m \lrbrack{a^n}{b^2} & - & \lrbrack{a^2}{b^n} a^m + \lrbrack{a^2}{b^m} a^n\\
+& = & \\
+ -b^n(1!{m \choose 1}{2 \choose 1}b a^{m-1} &+& 2!{m \choose 2}{2 \choose 2}a^{m-2})\\
++ b^m(1!{n \choose 1}{2 \choose 1}b a^{n-1} &+& 2!{n \choose 2}{2 \choose 2}a^{n-2})\\
+- (1!{n \choose 1}{2 \choose 1}b^{n-1} a &+& 2!{n \choose 2}{2 \choose 2}b^{n-2}) a^m\\
+= (1!{m \choose 1}{2 \choose 1}b^{m-1} a &+& 2!{m \choose 2}{2 \choose 2}b^{m-2}) a^n\\
+& = & \\
+- 2m L_{m-1}^{n+1} - m(m-1) L_{m-2}^{n} &-& 2n L_{m+1}^{n-1} - n(n-1)L_{m}^{n-2}
+\end{eqnarray*}
+
+The stipulations, of course, are that $n>m>2$.  If we're considering any other $L_m^n$ then our structure constants will be different.  In fact, if $m+1 = n-1$ then we will get number operators in the third and fourth spots.
+
+Repeating the above calculations, but with $\bar{L}_m^n$
+
+We get
+\begin{eqnarray*}
+\lrbrack{L_0^2}{\bar{L}_m^n} & = &\\
+- 2m \bar{L}_{m-1}^{n+1} - m(m-1) \bar{L}_{m-2}^{n} &-& 2n \bar{L}_{m+1}^{n-1} - n(n-1)\bar{L}_{m}^{n-2}
+\end{eqnarray*}
+
+
+In particular we have the general form for a small part of the structure constants:
+
+\begin{equation}
+c_{0mj}^{2nk} = \xi_{0mj}^{2nk}
+\end{equation}
+
+
+Let's look at a general form of
+\[
+\lrbrack{L_0^n}{L_i^j}
+\]
+In order to simplify, we can assume (without loss of generality) $n>j>i$.
+\begin{eqnarray*}
+\lrbrack{L_0^n}{L_i^j} & = & \lrbrack{b^n - a^n}{b^j a^i - b^i a^j}\\
+= \lrbrack{b^n}{b^j a^i} & - & \lrbrack{b^n}{b^i a^j}\\
+- \lrbrack{a^n}{b^j a^i} & + & \lrbrack{a^n}{b^i a^j}\\
+& & \\
+= b^j \lrbrack{b^n}{a^i} & - & b^i \lrbrack{b^n}{a^j}\\
+-\lrbrack{a^n}{b^j} a^i & + & \lrbrack{a^n}{b^i} a^j\\
+& & \\
+= -b^j \lrbrack{a^i}{b^n} & + & b^i \lrbrack{a^j}{b^n}\\
+-\lrbrack{a^n}{b^j} a^i & + & \lrbrack{a^n}{b^i} a^j\\
+& & \\
+-b^j (1! {n \choose 1}{i \choose 1}b^{n-1}a^{i-1} &+& \dots i!{n \choose i}{i\choose i}b^{n-i})\\
++b^i (1! {n \choose 1}{j \choose 1}b^{n-1}a^{j-1} &+& \dots j!{n \choose j}{j\choose j}b^{n-j})\\
+-(1! {n \choose 1}{j \choose 1}b^{j-1}a^{n-1} &+& \dots j!{n \choose j}{j\choose j}a^{n-j}) a^i\\
+-(1! {n \choose 1}{i \choose 1}b^{i-1}a^{n-1} &+& \dots i!{n \choose i}{i\choose i}a^{n-i}) a^j
+\end{eqnarray*}
+
+This picks up the Lie algebra elements:
+\[
+L_{i-1}^{n+j-1}, L_{i-2}^{n+j-2},\dots, L_0^{n+j-i}
+\]
+and 
+\[
+L_{j-1}^{n+i-1}, L_{j-2}^{n+i-2},\dots, L_0^{n+i-j}
+\]
+
+
+Another interesting fact with commutators is that
+\[
+\lrbrack{L_0^n}{\bar{L}_0^m} = \lrbrack{L_0^m}{\bar{L}_0^n}
+\]
+
+Note: This is only true for $L_0^n$ elements.  When we have mixed terms, the bar does not shift exactly.
+
+
+
+Now let's see if we can pick up the overall structure for all commutators in our Lie Algebras.
+
+\begin{eqnarray}
+\lrbrack{L_i^j}{L_n^m} & = & \lrbrack{b^ja^i-b^ia^j}{b^ma^n-b^na^m} \\
+= \lrbrack{b^j a^i }{b^m a^n} & + & \lrbrack{b^i a^j }{b^n a^m} \nonumber\\
+-\lrbrack{b^j a^i }{b^n a^m} & - & \lrbrack{b^i a^j }{b^m a^n} \nonumber \\
+ & & \nonumber\\
+= b^j \lrbrack{ a^i }{b^m} a^i &+& b^m\lrbrack{b^j  }{ a^n} a^i \nonumber\\ 
++ b^i \lrbrack{ a^j }{b^n} a^m &+& b^n\lrbrack{b^i  }{ a^m} a^j \nonumber\\
+- b^j \lrbrack{ a^i }{b^n} a^m &-& b^n\lrbrack{b^j  }{ a^m} a^i \nonumber\\
+-b^i\lrbrack{ a^j }{b^m} a^n &-& b^m\lrbrack{b^i  }{ a^n} a^j \nonumber\\ 
+& & \nonumber\\
+= b^j [\sum_{q=1}^{\min(i,m)}K_q b^{m-q}a^{i-q}]a^n & - & b^m [\sum_{q=1}^{\min(j,n)}K_q b^{j-q}a^{n-q}]a^i  \nonumber \\
++ b^i [\sum_{q=1}^{\min(j,n)}K_q b^{n-q}a^{j-q}]a^m & - & b^n [\sum_{q=1}^{\min(i,m)}K_q b^{i-q}a^{m-q}]a^j \nonumber\\
+- b^j [\sum_{q=1}^{\min(i,n)}K_q b^{n-q}a^{i-q}]a^m &+& b^n [\sum_{q=1}^{\min(j,m)}K_q b^{j-q}a^{m-q}]a^i \nonumber\\
+- b^i [\sum_{q=1}^{\min(j,m)}K_q b^{m-q}a^{j-q}]a^n & + & b^m [\sum_{q=1}^{\min(i,n)}K_q b^{i-q}a^{n-q}]a^j\nonumber
+\end{eqnarray}
+
+
+Now let's ignore the coefficients $K_q$ for the moment and just pick out exactly which Lie algebra elements show up.  We have
+\[
+\left\{L_{i+n-q}^{j+m-q} \right\}_{q=1}^{\min(i,m)}
+\]
+\[
+\left\{L_{i+n-q}^{j+m-q} \right\}_{q=1}^{\min(j,n)}
+\]
+\[
+\left\{L_{i+m-q}^{j+n-q} \right\}_{q=1}^{\min(i,n)}
+\]
+\[
+\left\{L_{i+m-q}^{j+n-q} \right\}_{q=1}^{\min(j,m)}
+\]
+
+This tells us that the commutator
+\[
+\lrbrack{L_i^j}{L_n^m}
+\]
+
+Produces the following elements for us:
+\[
+\left\{L_{i+n-r}^{j+m-r} \right\}_{r=1}^{\max(\min(i,m),\min(j,n))} \textnormal{ and } \left\{L_{i+m-s}^{j+n-s} \right\}_{s=1}^{\max(\min(i,n),\min(j,m))}
+\]
+
+
+This leads us to the relevant question of ``reverse look ups."  That is to say, given a particular element $L_i^j$ which commutators produced it?
+
+In the case of even powered potentials, we will always have $i$ and $j$ with parity.  That is $j = i + 2k$ for some integer $k>0$.
+
+So let's see if we can produce $L_0^{10}$ for example...
+This means the superindex is exactly the lower index plus ten.  In this case we have one of two possibilities:
+\[
+(j+m)-(i+n) = 10
+\]
+or
+\[
+(j+n)-(i+m) = 10
+\]
+Since we know $j=i+2k$ and we say $m= n+2\ell$ we reduce our first equation to
+\[
+(j+m)-(i+n) = (i+2k + n+2\ell) - (i+n) = 2k + 2\ell = 10
+\]
+That leaves us with $k+\ell = 5$ and $k,\ell>0$.  So we only have $(k,\ell) = (1,4),(2,3),(3,2),(4,1)$.
+So for example let's take $(k,\ell) = (1,4)$ then
+\[
+j = i+2, \textnormal{ and } m = n+ 8
+\]
+Thus commutators of the form
+\[
+\lrbrack{L_i^{i+2}}{L_n^{n+8}} 
+\]
+will produce $L_0^{10}$.
+
+In the second case
+
+\[
+(j+n) - (i+m) = 2(k-\ell) = 10
+\]
+
+So $k = \ell + 5$
+
+Then we have the examples $ j = i + 2(\ell + 5), m = n+ 2\ell$
+
+So we have the examples
+\[
+\lrbrack{L_{i}^{i+10 + 2\ell}}{L_n^{n+2\ell}}
+\]
+
+
+
+In general to produce the element
+\[
+L_{r}^{s}
+\]
+We have to consider
+\[
+(j+m)-(i+n) = s-r
+\]
+and
+\[
+(j+n)-(i+m) = s-r
+\]
+
+With our setup this leaves us with two possibilities
+\[
+k+\ell = \frac{s-r}{2} \textnormal{ or } k-\ell = \frac{s-r}{2}
+\]
+
+This is how we can produce any Lie algebra element necessary.  Furthermore, since each piece $L_{(n)}$ has an order $2n+2$ element, we can limit exactly which commutators can produce the pieces we need.
+
+
+
+\section*{The Complete First Order Calculations}
+
+Let's recall that our added potential is $\lambda x^4$.  Rewriting this in terms of ladder operators we get
+\[
+\lambda x^4 = \lambda \left(\frac{a+b}{\sqrt{2}}\right)^4
+\]
+Now using the Weil binomial coefficients we have
+\[
+\frac{\lambda}{4}(b^4 + 4b^3 a + 6 b^2 a^2 + 4 b a^3 + a^4 + 6 b^2 + 12 ba + 6 a^2 + 3)
+\]
+
+Here we have
+\[
+\wbc{4}{0}{0} =\wbc{4}{4}{0}= 1, \wbc{4}{1}{0} = \wbc{4}{3}{0} = 4, \wbc{4}{2}{0} = 6,
+\]
+\[
+\wbc{4}{1}{1} = \wbc{4}{3}{1} = 6, \wbc{4}{2}{1} = 12, \wbc{4}{2}{2} = 3.
+\]
+
+In this case all the pieces in the denominator need to be nonnegative.  So that $\wbc{4}{1}{3}$ doesn't make sense.
+
+
+So with we group the terms as such
+\[
+\bar{L}_0^4, \bar{L}_1^3, \bar{L}_0^2
+\]
+The leftover terms are
+$b^2 a^2$, $ba$, and $3$.  We know that all of these commute with $H_0$ and so they won't show up in our Lie Algebra, as they are already accounted for.
+
+Now giving the commutation relations with $H_0$ we get
+\[
+\lrbrack{H_0}{\bar{L}_m^n} = (n-m)L_m^n
+\]
+
+So our first few Lie algebra elements are
+\[
+L_0^4, L_1^3, L_0^2
+\]
+
+We've thrown away the constants for the time being in order to regroup them into our parameters later.  This tells us that up to order one in $\lambda$ we have the equation
+\[
+U^{\dagger}H_0 U = H_0 - \lrbrack{X}{H_0} + O(\lambda^2)
+\]
+
+The form of $X$ is given by
+\begin{equation}
+X = \lambda (\alpha_{40}L_0^4 + \alpha_{31}L_1^3 + \alpha_{20}L_0^2)
+\end{equation}
+
+And thus we recover
+\[
+U^{\dagger} H_0 U  = H_0 + \lambda(4\alpha_{40}\bar{L}_0^4 + 2\alpha_{31}\bar{L}_1^3 + 2\alpha_{20}\bar{L}_0^2) + O(\lambda^2)
+\]
+
+We need to transform the sum after $H_0$ into $\lambda x^4$
+
+So from the initial calculations we need
+\[
+\frac{\lambda}{4}(\bar{L}_0^4 + 4 \bar{L}_1^3 + 6b^2 a^2 + 6 \bar{L}_0^2 + 12 ba + 3)
+\]
+
+
+
+Matching sides on Lie algebra elements we see
+\[
+\frac{1}{4} = 4 \alpha_{40}
+\]
+More specifically
+\[
+\frac{1}{4}\wbc{4}{0}{0} = (4-0)\alpha_{40}
+\]
+
+On the right hand side we have written $(4-0)$ because this reminds us that the commutation with $H_0$ pulls out a copy of $(n-m)$ from $L_m^n$.
+
+Additionally
+\[
+\frac{1}{4}\wbc{4}{1}{0} = (3-1)\alpha_{31}
+\]
+and finally
+
+\[
+\frac{1}{4}\wbc{4}{1}{1} = (2-0) \alpha_{20}
+\]
+
+
+Which gives the well known result from before
+\[
+\alpha_{40} = \frac{1}{16}, \alpha_{31} = \frac{1}{2}, \alpha_{20} = \frac{3}{4}
+\]
+
+
+We have canceled all the operators which are not of the form $b^m a^m$.
+
+
+
+So our equation looks like
+\[
+U^{\dagger}H_0 U = H_0 + \lambda x^4 - \frac{\lambda}{4}(6 b^2 a^2 + 12 ba + 3)
+\]
+
+Simplifying using the fact that
+\[
+b^2 a^2 = (ba)(ba+1) = N(N+1)
+\]
+
+We have the simple expression
+
+\[
+U^{\dagger}H_0 U = H_0 + \lambda x^4 - \frac{3\lambda}{2} N(N+1) - \frac{3\lambda}{4}
+\]
+
+Which gives us the proper ground state perturbation up to order one in $\lambda$.  We have
+\[
+H_4 U^{\dagger} |0\rangle = U^{\dagger} H_0 |0\rangle = \left(\frac{1}{2} + \frac{3\lambda}{4}\right) |0\rangle
+\]
+
+
+\begin{equation}
+E_0^{(1)} = E_0 + \frac{3\lambda}{4}
+\end{equation}
+
+
+\section*{The Complete Second Order Calculations}
+
+
+Our second piece of our Lie algebra is
+\[
+L_{(2)} = \{L_0^2,L_1^3,L_0^4,L_2^4,L_0^6 \}
+\]
+which means that our operator $X$ is given by
+\[
+\lambda(\alpha_{20}L_0^2 + \alpha_{31}L_1^3 + \alpha_{40}L_0^4) + \lambda^2(\beta_{20}L_0^2 + \beta_{31}L_1^3 + \beta_{40}L_0^4 +\beta_{42}L_2^4 + \beta_{60}L_0^6)
+\]
+
+
+We know the forms of all our $\alpha_{ij}$, but for now we will leave them as parameters so that we may start developing a series of recurrence relations.
+
+Our second order correction looks like
+\begin{eqnarray*}
+-\lambda^2 \lrbrack{L_{(2)}}{H_0} & + & \frac{\lambda^2}{2} \lrbrack{L_{(1)}}{\lrbrack{L_{(1)}}{H_0}}\\
+= -\lambda^2 (-2\beta_{20}\bar{L}_0^2 - 2\beta_{31}\bar{L}_1^3 &-& 4\beta_{40}\bar{L}_0^4 -2\beta_{42}\bar{L}_2^4 - 6\beta_{60}\bar{L}_0^6)\\
++ \frac{\lambda^2}{2}\lbrack{\alpha_{20}L_0^2 + \alpha_{31}L_1^3 + \alpha_{40}L_0^4}& ,& {-2\alpha_{20}\bar{L}_0^2 - 2\alpha_{31}\bar{L}_1^3 - 4\alpha_{40}\bar{L}_0^4}\rbrack 
+\end{eqnarray*}
+
+
+Now we have to deal with 9 terms:
+\begin{itemize}
+\item $2\alpha_{20}\alpha_{20} \lrbrack{L_0^2}{\bar{L}_0^2}$\\
+\item $2\alpha_{20}\alpha_{31}\lrbrack{L_0^2}{\bar{L}_1^3}$\\
+\item $4\alpha_{20}\alpha_{40}\lrbrack{L_0^2}{\bar{L}_0^4}$\\
+\item $2\alpha_{31}\alpha_{20}\lrbrack{L_1^3}{\bar{L}_0^2}$\\
+\item $2\alpha_{31}\alpha_{31}\lrbrack{L_1^3}{\bar{L}_1^3}$\\
+\item $4\alpha_{31}\alpha_{40}\lrbrack{L_1^3}{\bar{L}_0^4}$\\
+\item $2\alpha_{40}\alpha_{20}\lrbrack{L_0^4}{\bar{L}_0^2}$\\
+\item $2\alpha_{40}\alpha_{31}\lrbrack{L_0^4}{\bar{L}_1^3}$\\
+\item $4\alpha_{40}\alpha_{40}\lrbrack{L_0^4}{\bar{L}_0^4}$\\
+\end{itemize}
+
+The three commutators $\lrbrack{L_0^2}{\bar{L}_0^2}$, $\lrbrack{L_1^3}{\bar{L}_1^3}$, and$\lrbrack{L_0^4}{\bar{L}_0^4}$
+
+produce only number operators and so we'll leave them alone for a minute.
+
+Notice that we have left the $\alpha_{nm}$ in place for now and we're also bringing the multiple $j-i$ out front.  This comes from the first commutator with $H_0$.  Recall
+\[
+\lrbrack{H_0}{L_m^n} = (n-m) \bar{L}_m^n.
+\]
+
+Leaving the coefficients alone for a moment the ``smaller" commutators are computed as such:
+
+\begin{itemize}
+\item $\lrbrack{L_0^2}{\bar{L}_1^3} = -4 \bar{L}_0^4 - 12(2{N \choose 2} + N)$\\
+\item $\lrbrack{L_0^2}{\bar{L}_0^4} = -8\bar{L}_1^3 - 12 \bar{L}_0^2$\\
+\item $\lrbrack{L_1^3}{\bar{L}_0^2} = 2\bar{L}_0^4 - 12(2{N \choose 2} +N)$\\
+\item $\lrbrack{L_0^4}{\bar{L}_0^2} = \lrbrack{L_0^2}{\bar{L}_0^4} $
+\end{itemize}
+
+
+The ``larger" commutators are given by
+\begin{itemize}
+\item $\lrbrack{L_1^3}{\bar{L}_0^4} = 4 \bar{L}_0^6 -12\bar{L}_2^4 - 36 \bar{L}_1^3 - 24 \bar{L}_0^2$\\
+\item $\lrbrack{L_0^4}{\bar{L}_1^3} =-4 \bar{L}_0^6 -12\bar{L}_2^4 - 36 \bar{L}_1^3 - 24 \bar{L}_0^2$\\
+\end{itemize}
+
+
+Notice the only difference is in the coefficient of $\bar{L}_0^6$.
+
+
+Now let's collect our terms for $\bar{L}_0^6$.  We must get zero, since there are no sixth order terms in the operator $H_4$.
+
+\begin{equation}
+6\beta_{60} - \frac{1}{2}(2\alpha_{40}\alpha_{31}(-4) + 4\alpha_{31}\alpha_{40}(+4)) = 0
+\end{equation}
+
+This tells us
+\begin{equation}
+\beta_{60} = \frac{1}{6}\frac{1}{2}(8\alpha_{40}\alpha_{31}) = \frac{1}{48}
+\end{equation}
+
+Let's look at each of these individual numbers and try to trace their sources:
+
+\begin{itemize}
+\item $\frac{1}{6}$ comes from $(6-0)$ in $\lrbrack{L_0^6}{H_0}$\\
+\item $\frac{1}{2}$ comes from the $\frac{1}{2!}$ term in the commutator of the commutator in the Dyson series.\\
+\item We have a $4$ and a $2$ coming from $\lrbrack{L_0^4}{H_0}$ and $\lrbrack{L_1^3}{H_0}$.\\
+\item The $\pm 4$ come from the commutators $\lrbrack{L_1^3}{\bar{L}_0^4}$ and $\lrbrack{L_0^4}{\bar{L}_1^3}$ in the second order commutators.  These are the only terms which produce an $\bar{L}_0^6$.  The exact form of $\pm 4$ is $\pm 1! {4 \choose 1}{1 \choose 1}$\\
+\item These commutators also account for the leftover terms $\alpha_{40}$ and $\alpha_{31}$ which are simply numbers and therefore commute. 
+\end{itemize}
+
+Now let's look at the other parameters:
+The coefficients on $\bar{L}_2^4$ are
+\[
+2 \beta_{42} - \half(2\alpha_{40}\alpha_{31}(-12)+4\alpha_{31}\alpha_{40}(-12)) = 0
+\]
+
+Which tells us 
+\[
+\beta_{42} = \half\half(2\alpha_{40}\alpha_{31}(-12)+4\alpha_{31}\alpha_{40}(-12))=  \frac{-9}{16}
+\]
+
+Again, we have several copies of 2 coming from $L_2^4 \rightarrow (4-2)$ and $\LARGE_1^3 \rightarrow (3-1)$.  The 4 comes from $L_0^4 \rightarrow (4-0)$ and the (-12) comes from the commutator
+
+\[
+\lrbrack{L_0^4}{\bar{L}_1^3} \textrm{ and } \lrbrack{L_1^3}{\bar{L}_0^4}
+\]
+Which yield the structure constants 
+\[
+-1! {4\choose 1}{3 \choose 1} = -12
+\]
+
+Onto the $\bar{L}_0^4$ terms
+\[
+4\beta_{40} - \half(2\alpha_{20}\alpha_{31}(-2) + 2\alpha_{31}\alpha_{20}(+2)) = 0
+\]
+
+This gives us the convenient result
+\[
+\beta_{40} = 0
+\]
+
+Moving right along, the $\bar{L}_1^3$ terms are as follows
+\[
+2\beta_{31} - \half(4\alpha_{20}\alpha_{40}(-8)+ 2\alpha_{40}\alpha_{20}(-8) + 2 \alpha_{40}\alpha_{31}(-36)+4\alpha_{31}\alpha_{40}(-36))=0
+\]
+
+
+All the terms show up normally, and we look at the $-8$ and $-36$ coefficients.
+
+\[
+-8 = -1!{4\choose 1}{2\choose 1}
+\]
+
+and 
+
+\[
+-36 = -2!{4\choose 2}{3\choose 2}
+\]
+
+Both $-8$ and $-36$ come from the commutators
+\[
+\lrbrack{L_1^3}{\bar{L}_0^4} \textrm{ and  } \lrbrack{L_0^4}{\bar{L}_1^3}
+\]
+
+
+This leads us to
+\[
+\beta_{31} = \frac{-9}{4}
+\]
+
+
+
+Finally we can look at the coefficients on the $\bar{L}_0^2$ term.
+
+\begin{eqnarray*}
+2\beta_{20} &-& \half(4\alpha_{20}\alpha_{40}(-12) + 2\alpha_{40}\alpha_{20}(-12)\\
+            &+& 2\alpha_{40}\alpha_{31}(-24) +4\alpha_{31}\alpha_{40}(-24) ) =0 
+\end{eqnarray*}
+
+We've seen $-12$ show up before as 
+\[
+-12 = -2!{4\choose 2}{2\choose 2}
+\]
+
+And now we see $-24$ as
+\[
+-24 = -3! {4 \choose 3}{3 \choose 3}
+\]
+
+Leaving us with 
+\[
+\beta_{20} = \frac{-63}{32}
+\]
+
+
+These results agree with the original paper.  But now we're starting to get a sense of what the coefficients are.
+
+
+\begin{eqnarray*}
+\alpha_{20} & = & \frac{3}{4}\\
+\alpha_{31} & = & \frac{1}{2}\\
+\alpha_{40} & = & \frac{1}{16}\\
+\beta_{20} & = & \frac{-63}{32}\\
+\beta_{31} & = & \frac{-9}{4}\\
+\beta_{40} & = & 0\\
+\beta_{42} & = & \frac{-9}{16}\\
+\beta_{60} & = & \frac{1}{48}\\
+\end{eqnarray*}
+
+
+
+
+\section*{Some Computations toward a Third Order Perturbation}
+
+Since we know
+\[
+U = e^X, U^{\dagger} = e^{-X}
+\]
+and 
+\[
+X = \sum_{k=1}^n \alpha_k \lambda^k L_{(k)}
+\]
+
+We have the Dyson Series
+
+\[
+U^{\dagger}H_0 U = H_0 - [X,H_0] + \frac{1}{2}[X,[X,H_0]] - \frac{1}{3!}[X,[X,[X,H_0]]] + \dots
+\]
+
+When we separate the pieces and look only for parts involving $\lambda^3$
+
+we see only the following
+\[
+-[L_{(3)},H_0] + \frac{1}{2} [L_{(1)},[L_{(2)}, H_0]] + \frac{1}{2}[L_{(2)},[L_{(1)},H_0]] - \frac{1}{6}[L_{(1)},[L_{(1)},[L_{(1)},H_0]]]
+\]
+
+Let's begin this computation with the triple commutator involving mostly generator terms:
+\[
+\lbrack L_{(1)} , \lbrack L_{(1)} ,\lbrack L_{(1)} , H_0 \rbrack\rbrack\rbrack
+\]
+
+Expanding ever so slightly we have:
+
+\[
+\lbrack L_{(1)} , \lbrack L_{(1)} , 2\alpha_{20} \bar{L}_0^2 + 2 \alpha_{31} \bar{L}_1^3 + 4 \alpha_{40} \bar{L}_0^4 \rbrack\rbrack
+\]
+
+
+Let's only consider the inner commutator for a moment:
+\[
+\lrbrack{\alpha_{20}L_0^2 + \alpha_{31}L_1^3 + \alpha_{40}L_0^4}{2\alpha_{20} \bar{L}_0^2 + 2 \alpha_{31} \bar{L}_1^3 + 4 \alpha_{40} \bar{L}_0^4}
+\]
+
+
+We conquered this exact calculation in the second order calculations.  Just to review, we have:
+
+\begin{eqnarray*}
+\lrbrack{L_{(1)}}{\bar{L}_{(1)}} &=& \lrbrack{\alpha_{20}L_0^2}{2\alpha_{20}\bar{L}_0^2} \\
+\lrbrack{\alpha_{20}L_0^2}{2\alpha_{31}\bar{L}_1^3}
+& + &
+\lrbrack{\alpha_{20}L_0^2}{4\alpha_{40}\bar{L}_0^4} \\
+\lrbrack{\alpha_{31}L_1^3}{2\alpha_{20}\bar{L}_0^2}
+& + & 
+\lrbrack{\alpha_{31}L_1^3}{2\alpha_{31}\bar{L}_1^3}\\
+\lrbrack{\alpha_{31}L_1^3}{4\alpha_{40}\bar{L}_0^4}
+& + &
+\lrbrack{\alpha_{40}L_0^4}{2\alpha_{20}\bar{L}_0^2}\\
+\lrbrack{\alpha_{40}L_0^4}{2\alpha_{31}\bar{L}_1^3}
+& + &
+\lrbrack{\alpha_{40}L_0^4}{4\alpha_{40}\bar{L}_0^4}
+\end{eqnarray*}
+
+
+We'll actually maintain all terms this time, since we will produce higher powers of number operators, and these operators don't necessarily commute into more number operators with all $L_i^j$.
+
+
+This leaves us with the calculation:
+
+\begin{eqnarray*}
+2\alpha_{20}^2 \lrbrack{L_0^2}{\bar{L}_0^2} & = & 2\alpha_{20}^2 (-2(4ba + 2))\\
+2\alpha_{20}\alpha_{31} \lrbrack{L_0^2}{\bar{L}_1^3} & = & 2\alpha_{20}\alpha_{31} (-4\bar{L}_0^4 -12(b^2a^2 + ba))\\
+4\alpha_{20}\alpha_{40} \lrbrack{L_0^2}{\bar{L}_0^4} & = & 4\alpha_{20}\alpha_{40}(-8\bar{L}_1^3 - 12 \bar{L}_0^2) \\
+2\alpha_{31}\alpha_{20} \lrbrack{L_1^3}{\bar{L}_0^2} & = & 2\alpha_{31}\alpha_{20} (2\bar{L}_0^4 - 12(b^2a^2 + ba))\\
+2\alpha_{31}^2 \lrbrack{L_1^3}{\bar{L}_1^3} & = & 2\alpha_{31}^2 (-2((9-1)b^3a^3 + 18 b^2a^2 + 6 ba))\\
+4\alpha_{31}\alpha_{40} \lrbrack{L_1^3}{\bar{L}_0^4} & = & 4\alpha_{31}\alpha_{40} (4\bar{L}_0^6 - 12 \bar{L}_2^4 -36 \bar{L}_1^3 - 24 \bar{L}_0^2)\\
+2\alpha_{40}\alpha_{20} \lrbrack{L_0^4}{\bar{L}_0^2} & = & 2\alpha_{40}\alpha_{20}( -8\bar{L}_1^3 - 12 \bar{L}_0^2 ) \\
+2\alpha_{40}\alpha_{31} \lrbrack{L_0^4}{\bar{L}_1^3} & = & 2\alpha_{40}\alpha_{31} (-4\bar{L}_0^6 - 12 \bar{L}_2^4 -36 \bar{L}_1^3 - 24 \bar{L}_0^2)\\
+4\alpha_{40}^2 \lrbrack{L_0^4}{\bar{L}_0^4} & = & 4\alpha_{40}^2(-2(16b^3a^3 + 72 b^2a^2 + 96 ba + 24))\\
+\end{eqnarray*}
+
+
+From here we need to commute these nine terms with another copy of $L_{(1)}$.  
+
+
+So our 27 terms are as follow:
+
+\begin{itemize}
+\item[2.2.2:] $2\alpha_{20}\alpha_{20}\alpha_{20} \lrbrack{L_0^2}{\lrbrack{L_0^2}{\bar{L}_0^2}}$\\
+$ = 2\alpha_{20}^3 \lrbrack{L_0^2}{-8ba-4}$\\
+$ = 2\alpha_{20}^3 8\lrbrack{ba}{L_0^2}\\
+= 2\alpha_{20}^3 8 (2-0)\bar{L}_0^2$\\
+Simplifying we get\\
+$32(3/4)^3 \bar{L}_0^2 = 27/2 \bar{L}_0^2$
+\item[2.2.3:] $2\alpha_{20}\alpha_{20}\alpha_{31} \lrbrack{L_0^2}{\lrbrack{L_0^2}{\bar{L}_1^3}}$\\
+$2\alpha_{20}^2\alpha_{31} \lrbrack{L_0^2}{-2\bar{L}_0^4-12b^2a^2 - 12ba}$\\
+$ = 2\alpha_{20}^2\alpha_{31}(-2\lrbrack{L_0^2}{\bar{L}_0^4}+12\lrbrack{b^2a^2}{L_0^2}+ 12\lrbrack{ba}{L_0^2})$\\
+$ = 2\alpha_{20}^2\alpha_{31}(-2(-8\bar{L}_1^3-12\bar{L}_0^2) +12(4\bar{L}_1^3 + 2\bar{L}_0^2) +12(2\bar{L}_0^2) $\\
+Simplifying this we have\\
+$2(3/4)^2(1/2)(64 \bar{L}_1^3 + 72\bar{L}_0^2)$\\
+$36 \bar{L}_1^3 + (81/2) \bar{L}_0^2$
+\item[2.2.4:] $4\alpha_{20}\alpha_{20}\alpha_{40} \lrbrack{L_0^2}{\lrbrack{L_0^2}{\bar{L}_0^4}}$\\
+$(9/64)\lrbrack{L_0^2}{-8\bar{L}_1^3-12\bar{L}_0^2} $\\
+$= (9/64)(-8\lrbrack{L_0^2}{\bar{L}_1^3} - 12\lrbrack{L_0^2}{\bar{L}_0^2})$\\
+$= (-9/64)(8(-4\bar{L}_0^4-12(b^2a^2+ba)) +12(-2(4ba+2)))$
+\item[2.3.2:] $2\alpha_{20}\alpha_{31}\alpha_{20} \lrbrack{L_0^2}{\lrbrack{L_1^3}{\bar{L}_0^2}}$\\
+$(9/16)\lrbrack{L_0^2}{2\bar{L}_0^4-12b^2a^2 -12 ba}$\\
+$(9/16)(2(-8\bar{L}_1^3-12\bar{L}_0^2) - 12 \lrbrack{L_0^2}{b^2a^2} -12(-2)\bar{L}_0^2)$\\
+\item[2.3.3:] $2\alpha_{20}\alpha_{31}\alpha_{31} \lrbrack{L_0^2}{\lrbrack{L_1^3}{\bar{L}_1^3}}$\\
+$(3/8)$\\
+\item[2.3.4:] $4\alpha_{20}\alpha_{31}\alpha_{40} \lrbrack{L_0^2}{\lrbrack{L_1^3}{\bar{L}_0^4}}$\\
+$(3/32)$\\
+\item[2.4.2:] $2\alpha_{20}\alpha_{40}\alpha_{20} \lrbrack{L_0^2}{\lrbrack{L_0^4}{\bar{L}_0^2}}$\\
+$(9/128)$\\
+\item[2.4.3:] $2\alpha_{20}\alpha_{40}\alpha_{31} \lrbrack{L_0^2}{\lrbrack{L_0^4}{\bar{L}_1^3}}$\\
+$(3/64)$\\
+\item[2.4.4:] $4\alpha_{20}\alpha_{40}\alpha_{40} \lrbrack{L_0^2}{\lrbrack{L_0^4}{\bar{L}_0^4}}$\\
+$(3/256)$\\
+\item[3.2.2:] $2\alpha_{31}\alpha_{20}\alpha_{20} \lrbrack{L_1^3}{\lrbrack{L_0^2}{\bar{L}_0^2}}$\\
+$ = (9/16) \lrbrack{L_1^3}{-8N-4}$\\
+$ = (9/16) (-8)(-2)\bar{L}_1^3$\\
+$ = 9 \bar{L}_1^3 $\\
+\item[3.2.3:] $2\alpha_{31}\alpha_{20}\alpha_{31} \lrbrack{L_1^3}{\lrbrack{L_0^2}{\bar{L}_1^3}}$\\
+$ = (3/8)\lrbrack{L_1^3}{-4\bar{L}_0^4-12b^2a^2 -12 ba}$\\
+$=$ \\
+\item[3.2.4:] $4\alpha_{31}\alpha_{20}\alpha_{40} \lrbrack{L_1^3}{\lrbrack{L_0^2}{\bar{L}_0^4}}$\\
+$()$\\
+\item[3.3.2:] $2\alpha_{31}\alpha_{31}\alpha_{20} \lrbrack{L_1^3}{\lrbrack{L_1^3}{\bar{L}_0^2}}$\\
+$ = () \lrbrack{L_1^3}{2\bar{L}_0^4-12b^2a^2 -12 ba}$\\
+\item[3.3.3:] $2\alpha_{31}\alpha_{31}\alpha_{31} \lrbrack{L_1^3}{\lrbrack{L_1^3}{\bar{L}_1^3}}$\\
+$()$\\
+\item[3.3.4:] $4\alpha_{31}\alpha_{31}\alpha_{40} \lrbrack{L_1^3}{\lrbrack{L_1^3}{\bar{L}_0^4}}$\\
+$()$\\
+\item[3.4.2:] $2\alpha_{31}\alpha_{40}\alpha_{20} \lrbrack{L_1^3}{\lrbrack{L_0^4}{\bar{L}_0^2}}$\\
+$()$\\
+\item[3.4.3:] $2\alpha_{31}\alpha_{40}\alpha_{31} \lrbrack{L_1^3}{\lrbrack{L_0^4}{\bar{L}_1^3}}$\\
+$()$\\
+\item[3.4.4:] $4\alpha_{31}\alpha_{40}\alpha_{40} \lrbrack{L_1^3}{\lrbrack{L_0^4}{\bar{L}_0^4}}$\\
+$()$\\
+\item[4.2.2:] $2\alpha_{40}\alpha_{20}\alpha_{20} \lrbrack{L_0^4}{\lrbrack{L_0^2}{\bar{L}_0^2}}$\\
+$ = 4\alpha_{40}\alpha_{20}^2\lrbrack{L_0^4}{-8N-4} $\\
+$ = 4\frac{1}{16}\frac{3^2}{4^2} (-8)(-4)\bar{L}_0^4$\\
+$ = \frac{9}{2} \bar{L}_0^4 $\\
+\item[4.2.3:] $2\alpha_{40}\alpha_{20}\alpha_{31} \lrbrack{L_0^4}{\lrbrack{L_0^2}{\bar{L}_1^3}}$\\
+$= (1/32)\lrbrack{L_0^4}{-4\bar{L}_0^4-12b^2a^2 -12 ba} $\\
+\item[4.2.4:] $4\alpha_{40}\alpha_{20}\alpha_{40} \lrbrack{L_0^4}{\lrbrack{L_0^2}{\bar{L}_0^4}}$\\
+$()$\\
+\item[4.3.2:] $2\alpha_{40}\alpha_{31}\alpha_{20} \lrbrack{L_0^4}{\lrbrack{L_1^3}{\bar{L}_0^2}}$\\
+$ = () \lrbrack{L_0^4}{2\bar{L}_0^4-12b^2a^2 -12 ba} $\\
+\item[4.3.3:] $2\alpha_{40}\alpha_{31}\alpha_{31} \lrbrack{L_0^4}{\lrbrack{L_1^3}{\bar{L}_1^3}}$\\
+$()$\\
+\item[4.3.4:] $4\alpha_{40}\alpha_{31}\alpha_{40} \lrbrack{L_0^4}{\lrbrack{L_1^3}{\bar{L}_0^4}}$\\
+$()$\\
+\item[4.4.2:] $2\alpha_{40}\alpha_{40}\alpha_{20} \lrbrack{L_0^4}{\lrbrack{L_0^4}{\bar{L}_0^2}}$\\
+$()$\\
+\item[4.4.3:] $2\alpha_{40}\alpha_{40}\alpha_{31} \lrbrack{L_0^4}{\lrbrack{L_0^4}{\bar{L}_1^3}}$\\
+$()$\\
+\item[4.4.4:] $4\alpha_{40}\alpha_{40}\alpha_{40} \lrbrack{L_0^4}{\lrbrack{L_0^4}{\bar{L}_0^4}}$\\
+$()$\\
+\end{itemize}
+
+
+
+\section*{General Forms Tending Toward the $n^{th}$ Order Calculation}
+
+With the small exception of $L_{(2)}$ and $L_{(3)}$
+the general form of the $n^{th}$ order Lie Algebra elements are
+
+\begin{equation}
+L_{(n)} = L_{(n-1)}\cup \{L_0^{2n+2},L_1^{2n+1},\dots,L_{n-1}^{n+1}\}
+\end{equation}
+
+The justification for this is simple.  Since the commutator is an order $-2$ operation and the element $L_i^j$ is an order $i+j$ operator, We get
+\[
+\lrbrack{L_m^n}{L_i^j} \in O(m+n+i+j-2)
+\]
+
+So the ``highest" order in $L_{(1)}$ is $4$ and thus in $L_{(2)}$ is $6 = 4+4-2$.  And so on.  With the litany of operators there are sufficiently many combinations to pick up all the order $2n+2$ operators.  The only hiccup is at $L_{(2)}$ which does not contain $L_1^5$, but $L_{(3)}$ picks up this element.  
+In this case, the number of elements in the $n^{th}$ level is given by
+\[
+|L_{(n)}| = 2*{n \choose 2} + 3
+\]
+The 2 comes from considering $L_i^j$ and $\bar{L}_i^j$ and the plus 3 from $I$, $H_0$, and $H_4$.
+
+In particular
+\[
+|L_{(n)}| - |L_{(n-1)}| = n+1
+\]
+These are the elements
+\[
+L_0^{2n+2},\dots, L_{n}^{n+2}
+\]
+
+Which immediately gives yields the form for our operator $X$ which is to be exponentiated;
+\begin{equation}
+X = \lambda (\sum \alpha^{(1)}_{ji}L_i^j) + \lambda^2 (\sum \alpha^{(2)}_{ji}L_i^j) + \cdots + \lambda^n (\sum \alpha^{(n)}_{ji}L_i^j)  
+\end{equation}
+
+
+The $n^{th}$ order term is more specifically 
+\[
+\lambda^n \sum_{k=0}^{n} \sum_{i=0}^{n-k}\alpha^{(n)}_{2n+2-2k-i,i}L_{i}^{2n+2-2k-i}
+\]
+
+
+\section*{Tables of Structure Constants}
+	
+\begin{center}
+\begin{tabular}{c | c | c | c | c | c | c | c }
+$n$ & $m$ & $j$ & $i$ & $k$ & $\ell$ & $c_{mj\ell}^{nik}$ & form\\
+\hline
+2 & 0 & 4 & 0 & 3 & 1 & -8 & $-\cc{1}{4}{2}$\\
+  &   &   &   & 2 & 0 & -12& $-\cc{2}{4}{2}$\\
+  &   & 3 & 1 & 4 & 0 & -2 & $-\cc{1}{2}{1}$\\
+  &   & 6 & 0 &   &   &  &\\
+  &   & 5 & 1 &   &   &  &\\
+  &   & 4 & 2 &   &   &  &\\
+  & & $j$ & $i$ & $j+1$ & $i-1$  & $-2i$ & $-\cc{1}{i}{2}$\\
+  & & &  & $j$  & $i-2$ & $-i(i-1)$ & $-\cc{2}{i}{2}$\\
+  & & & & $j-1$  & $i+1$  & $-2j$ & $-\cc{1}{j}{2}$\\
+  & & & & $j-2$  & $i$  & $-j(j-1)$ & $-\cc{2}{j}{2}$ \\
+4 & 0 & 3 & 1 &   &   &  &\\
+  &   &   &   &   &   &  &\\
+\end{tabular}	
+\end{center}		
+	
+I'd like to have a couple more tables here as well:\\
+One should be a sort of reverse look-up.\\
+From which commutators can we derive $L_i^j$?\\
+The Other should start cataloging the parameters that go in the operator $X$.  For example, we have $\alpha_{40}=1/16$, etc.	
+
+
+\section*{Origins of Lie Algebra Elements}
+
+In this section we're going to start giving a sort of reverse look up table.  
+
+Let's start by trying to find the element $\bar{L}_0^4$.
+
+In our commutators we'll want to see the calculations look something like:
+
+\[
+b^4 ( \textrm{ constants }) \rightarrow b^4 \lrbrack{a^n}{b^n} \leftrightarrow \lrbrack{b^4 a^n}{b^n}
+\]
+
+The second half of the calculation is there to balance with the appropriate power of $a$.  
+
+So it appears we can derive an $\bar{L}_0^4$ from
+\[
+\lrbrack{L_0^n}{\bar{L}_4^n} \textrm{ or } \lrbrack{L_0^n}{\bar{L}_n^4}
+\]
+
+depending on the size of $n$ since our assumption is that the superscript is larger than the subscript.
+
+
+Now if we have a $b^3$ consider
+\[
+b^3 (b^{n+1}a^n + \dots + b) \rightarrow b^3\lrbrack{a^n}{b^{n+1}}
+\rightarrow \lrbrack{b^3 a^n}{b^{n+1}}
+\]
+
+which brings us to
+\[
+\lrbrack{L_3^n}{\bar{L}_0^{n+1}} \textrm{ or } \lrbrack{L_{4-1}^n}{\bar{L}_0^{n+1}} \textrm{ or } \lrbrack{L_n^3}{\bar{L}_0^{n+1}}
+\]
+
+\section*{The First Alternative Method to Solution}
+
+The method of Jafarpour and Afshar generates the successive Lie algebras by taking commutators of commutators and accounting for the higher powers of $\lambda$.  It is clear, therefore, that the proper $noncommutative$ generators of the Lie algebra (disregarding $\lambda$ for the moment) are
+\[
+N = ba, L_0^2, L_1^3, L_0^4
+\]
+
+Instead of looking for the higher power commutators and elements of order $2k$ let's bundle all the pieces together and give each of $L_i^j$ in our generating set a function of $\lambda$.  We then consider the operator $X$ as
+
+\[
+X = f(\lambda) L_0^2 + g(\lambda) L_1^3 + h(\lambda) L_0^4
+\]
+
+Then we may return to the original idea that
+
+\[
+H_4 = e^{-X}H_0 e^X
+\]
+
+where we have predetermined the eigenvectors in the form
+\[
+e^{-X} |n\rangle
+\]
+
+This provides us with the solution:
+\[
+H_4 e^{-X}|n\rangle = e^{-X}H_0e^{X}e^{-X}|n\rangle = e^{-X}H_0|n\rangle = e^{-X}(n+\frac{1}{2})|n\rangle = (n+\frac{1}{2})e^{-X}|n\rangle
+\]	
+
+
+With our simplified version of $X$ we may, in fact, be able to simply pass the ground state into $X$ and see what happens.  This will give us the new ground state of $H_4$.  In this case then we should see what happens to the vectors $|0\rangle$ and other excited states as we pass them through $e^{-X}$.
+
+
+Let's begin with $|0\rangle$
+
+\[
+L_0^2 |0\rangle = (b^2-a^2)|0\rangle = b^2 |0\rangle = \sqrt{2} |2\rangle
+\]
+
+Luckily for us, $L_1^3$ has an annihilator term on the right for both pieces of the sum and therefore kills the ground state completely.  It is in this context that the normal ordering makes perfectly good sense.  Theoretically there is no ``most excited state" which is killed by $b$.
+
+\[
+L_1^3 |0\rangle = 0
+\]
+
+Finally on $L_0^4$ we have
+
+\[
+L_0^4 |0\rangle = (b^4 - a^4)|0\rangle = \sqrt{4!}|4\rangle
+\]
+
+
+
+For the moment let's try to find the mixed state eigenvalues of $L_0^2$
+\[
+L_0^2 \ket{\psi} = \mu \ket{\psi}
+\]
+
+\[
+\ket{\psi} = \sum \alpha_k \ket{k}
+\]
+
+
+Then our general vector on $\ket{k}$ is
+\[
+L_0^2 \ket{k} = \sqrt{(k+2)(k+1)}\ket{k+2} - \sqrt{(k)(k-1)}\ket{k-2}
+\]
+
+This leaves us with the equation
+\[
+L_0^2 \ket{\psi} = \mu \sum \alpha_k (\sqrt{(k+2)(k+1)}\ket{k+2} - \sqrt{(k)(k-1)}\ket{k-2})
+\]
+
+That leaves us with the recurrence relations:
+\[
+\alpha_k = \mu\alpha_{k-2}\sqrt{(k)(k-1)} - \mu\alpha_{k+2}\sqrt{(k+2)(k+1)} 
+\]
+
+This is a fourth order relation (or pair thereof) separated along even/odd lines.  
+
+\section*{Doing it all Again in Polar Coordinates}
+
+	
+\end{document}
+
+
