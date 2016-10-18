@@ -1,0 +1,92 @@
+\documentclass[10 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\B}{\textbf}
+
+\begin{document}
+
+\title{Research Statement Part 2}
+\author{Clark Alexander}
+
+\email{gcalexander1981@gmail.com} \maketitle
+
+\section*{An Algebraic Solution to the Helium Atom and Lithium Ions}
+\indent In my earlier work I improved the construction of Jafarpour and Afshar and gave a closed form solution for first order anharmonic oscillators with any analytic potential.  The basic idea behind this method is to construct begin with a differential operator whose spectrum is known and easily calculable.  In the original case we used the harmonic oscillator in one dimension with natural units:
+\[
+H_0 = \frac{1}{2}(x^2-d^2)
+\]
+
+Then we construct a unitary operator $U$ so that
+\[
+U^{\dagger} H_0 U = D
+\]
+where $D$ is the operator we desire.  The advantage of this approach is a matter of simple linear algebra.  If the spectrum of our original differential operator is known and complete then we can compute the spectrum of the operator $D$ as such.
+\[
+H_0 \psi_n = \lambda_n \psi_n \implies U^{\dagger}H_0 U U^{\dagger}\psi_n = U^{\dagger} \lambda_n \psi_n
+\]
+
+Simply stated, we only need to transform the eigenvectors by the unitary and then we can read off the transformed eigenvalues.  In practice, however, constructing such a unitary operator requires us to compute one term of a power series at a time, but each term requires exponentially many steps to compute.  The research in this area continues as we are searching for a full closed term second order correction and higher order corrections in with the additional potential term of $\lambda x^4$ so our goal is to compute
+\[
+D = H_0 +\lambda x^4.
+\]
+
+The advantage of tackling this problem algebraically and combintaorially rather than analytically is that the power series solution for anharmonic oscillators is known to diverge.  Unfortunately, the divergence is $\sim \left(\frac{-3}{2}\right)^n n!$ which diverges too quickly for most resummation methods.  The method we have devised appears to diverge somewhat more slowly, and therefore is easier to resum to a convergent series.
+
+\indent Moving forward from this the differential operator we will now tackle involves hydrogenic atoms or molecules.  That is, atoms or molecules containing only one electron.  These are solvable because the potential term is simply $1/r$ where $r$ is the distance to the electron.  When a second electron is introduced, the potential picks up extra terms:
+\[
+\frac{1}{r_1} + \frac{1}{r_2} + \frac{1}{|r_1-r_2|}
+\]
+The first two terms still allow calculable spectra, but the third term accounts for electron-electron repulsion and this is highly nonlinear.  The goal is now to apply the same technique as before; construct a unitary operator and conjugate a known differential operator's spectrum into one which is only partially known and read out the results more clearly.  The result of this technique is that we are not restricted to atoms in two or three dimensions, once we can conjugate another electron into existence furthering this technique to higher dimensions and higher numbers of electrons is a matter of constructing the correct unitary operator.  
+
+\section*{Homologies with Nonvanishing Squared Boundary}
+
+One amongst many techniques that mathematicians use is asking whether or not a particular postulate is necessary.  For example, hyperbolic and noneuclidean geometries arise for foregoing a single of Euclid's postulates.  In the same way, noncommutative geometry has been, in part, developed on the basis that functions need not commute, or that sheaves need not necessarily be sheaves, but only have ``most" of their properties.  Similarly, one can ask what should happen if we have a (co)homology theory in which $d^2 \ne 0$ but rather $d^N = 0$ for some $N>2$.  In the case of Hochschild homology the answer is rather straightforward.  It is easy to construct such an operator and then begin computing homologies.  One sticking point, however, is that exact sequences may not be constructed as
+\[
+A \xrightarrow{d} B \rightarrow{d} C \rightarrow{d} \dots
+\]
+
+but rather 
+\[
+A \xrightarrow{d^j} B \xrightarrow{d^{N-j}} C \xrightarrow{d^j} \dots
+\]
+
+This will allow us to build a long exact sequence in (co)homolgy as before.  One of the topics I intend to explore in this context is whether a manifold can be given such a differential structure in a meaningful way.  This can potential lead to building alternate theories of noncommutative (quantum)electrodynamics in arbitrary dimension.  Additionally, one is lead to wonder whether it is necessary that $N$ be integral at all.  Perhaps we can build a ``continuous" (co)homology in which we can take an arbitrary number of derivatives in a sensible way.  There is some well established research in the theory of fractional derivatives, but there seems a dearth of fractional (co)homologies with meaningful structures.
+
+
+\section*{Quantum Algorithms: Barker Codes}
+
+\indent A Barker code of length $N$ is a sequence $\{a_j\}_{j=1}^{N}$ of positive and negative ones, with the following property:
+\[
+-1 \le c_n = \sum_{j=1}^{N-n} a_j a_{j+n} \le 1
+\]
+
+These shifted inner products are called autocorrelations.  In order for a sequence to be a Barker code, it must have the smallest amount of autocorrelation possible.  These codes are used on broadcasting radio signals with as little interference as possible.  One of the stranger facts about these codes is that only 9 are known.  What is further known is that no sequences of odd length more than 13 can be a Barker code, and there are no Barker codes other than those known of length less than $10^{22}$.  However, the maximum value of $|c_n|$ is $|N-n|$ As there are $2^N$ possible sequences of length $N$ each length $N$ must have a sequence which has the minimal amount of autocorrelation.  The research undertaken here, along with I. Mercer is to find a quantum algorithm which can efficiently compute the sequence(s) of length $N$ which have minimal autocorrelation.  The basic process is to produce a superposition of all $2^N$ sequences and compute each autocorrelation vector.  Then using the $\ell_{\infty}$ norm finding the least autocorrelation using a modified version of Grover's algorithm.
+
+
+
+\section*{Quantum Algorithms: Computing Topological Invariants}
+
+\indent One of the many possible advantages in quantum computing is that we purportedly will be able to compute vastly more information more quickly.  Of course, quick search, quick factoring, and quick matrix multiplications are all extremely useful, but one is lead to wonder what are the limits of computation in this capacity.  Our principal question in this line of research is if we can effectively ask a computer to reduce an infinite set to a finite one, and from there compute topological invariants.  The first premises here are to make simplicial complexes from manifolds.  Computing basic homology in this way is easy.  Homotopy, on the other hand, requires quite a few more tools in our toolbox.  Additionally we ask whether it is possible for a quantum computer to compute long exact sequences, spectral sequences, cyclic (co)homoliges, K homologies, K-theory, knot invariants, characteristic class, etc.
+
+
+
+
+
+
+\end{document}
