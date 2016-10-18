@@ -1,0 +1,692 @@
+\documentclass{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lrbrack}[2]{\lbrack #1 , #2 \rbrack}
+\newcommand{\wbc}[3]{\left\{\begin{array}{cc}
+		{#1}\\{#2}
+	\end{array} \right\}_{#3}}
+\newcommand{\cc}[3]{{#1}!{#2 \choose #1}{#3 \choose #1}}
+%\cc is for commutator constants
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+
+
+\title{On the Road Toward Solving Eigenvalue Problems for operators of the form $x^n-d^n$}
+\author{GCA}
+
+
+
+\begin{document}
+\maketitle
+
+
+In these notes we will look at several techniques moving toward a solution to higher order ``generalizations" or quantum harmonic oscillators.\\
+
+\section{Convergent Sums with Many Zero Coefficients}
+
+In this section we begin with exponential type sums where we wish to skip several terms at a time.  Let's recall the sum for $e^x$.
+
+
+\[
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}
+\]
+
+This sum is everywhere convergent since $x^n \in O(n!)$.  Now let's look at sum other similar sums which are also everywhere convergent.
+
+\[
+\cos(x) = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!}
+\]
+
+\[
+\cosh(x) = \sum_{n=0}^{\infty} \frac{x^{2n}}{(2n)!}
+\]
+
+\[
+\sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}
+\]
+
+\[
+\sinh(x) = \sum_{n=0}^{\infty} \frac{ x^{2n+1}}{(2n+1)!}
+\]
+
+Notice that in each of the previous sums, the denominator ``skips" terms.  In the cosine and hyperbolic cosine sums, we have only even terms, whereas the sines contain only odd terms.  This leads us to the first question:
+
+\begin{center}
+How can we derive a sum that contains every third term?
+\end{center}
+
+For example:
+\[
+f(x) = \sum_{n=0}^{\infty} \frac{ x^{3n}}{(3n)!}
+\]
+or
+\[
+f(x) = \sum_{n=0}^{\infty} \frac{ x^{3n+1}}{(3n+1)!}
+\]
+or
+\[
+f(x) = \sum_{n=0}^{\infty} \frac{ x^{3n+2}}{(3n+2)!}
+\]
+
+
+we write down cosine and sine (and hyperbolic versions thereof) as if they are elementary functions, but we can rewrite them in terms of exponentials.  Consider:
+
+\[
+\cosh(x) = \frac{e^x + e^{-x}}{2}
+\]
+
+\[
+\cos(x) = \frac{e^{ix} + e^{-ix}}{2}
+\]
+
+\[
+\sinh(x) = \frac{e^x - e^{-x}}{2}
+\]
+
+\[
+\sin(x) = \frac{e^{ix} - e^{-ix}}{2i}
+\]
+
+Looking at a few patterns here we see the derivative nature of these relationships
+\[
+\frac{d}{dx} \cos(x) = \sin(x),  \frac{d}{dx} \cosh(x) = \sinh(x)
+\]
+
+Which seems to suggest that taking a derivative moves the index from every even to every odd.  Furthermore, $e^{-x}$ cancels every odd power when summed with $e^x$.  Notice now that $-1 = \sqrt{1}$.  So the pattern seems to suggest that in order to remove more items from the list we should add successive roots of unity.  This leads us to the following theorem
+
+\begin{thm}
+Let $\omega_k$ be a primitive $k^{th}$ root of unity.  That is, 
+\[
+\omega_k^k=1 \implies \omega_k = e^{\frac{2\pi i}{k}}
+\]
+Then the function
+\[
+f_k(x) = \frac{1}{k}\sum_{j=0}^{k-1} e^{\omega_k^j x}
+\]
+has the power series representation
+\[
+f_k(x) = \sum_{n=0}^{\infty} \frac{x^{kn}}{(kn)!}
+\]
+\end{thm}
+
+
+\begin{proof}
+Recall the geometric sum
+\[
+1 + r + r^2 + \cdots + r^n = \frac{r^{n+1}-1}{r-1}
+\]
+provided $r\ne 1$.
+
+Then
+\[
+f_k(x) = \frac{1}{k}(e^x + e^{\omega_k x}+ \cdots + e^{\omega_k^{k-1}x})
+\]
+
+Collecting similar terms in the power series we see
+\[
+f_k(x) = \frac{1}{k} \sum_{n=0}^{\infty}\frac{x^n}{n!}(1+\omega_k^n + \cdots + \omega_k^{n(k-1)})
+\]
+
+Looking at the individual terms
+\[
+1+ \omega_k^n + \omega_k^{2n} + \cdots + \omega_k^{n(k-1)} = \frac{\omega_k^{nk}-1}{\omega_k^n -1} = 0.
+\]
+Which is allowed when $n \not\equiv 0 \mod{k}$.  If $n \equiv 0 \mod{k}$ then the sum is exactly $k$, and then we divide by $k$ to yield unity again.
+\end{proof}
+
+
+An example then is
+\[
+f_3(x) = \frac{e^x + e^{\omega_3 x}+ e^{\omega_3^2 x}}{3} = \sum_{n=0}^{\infty} \frac{x^{3n}}{(3n)!}
+\]
+
+
+Now by taking derivatives we ``shift the power down."  In  the case of even/odd, down and up and hard to distinguish, since $2k+1$ looks like $2k-1$.  But let's take a derivative of $f_3(x)$ and see what happens
+
+\[
+\frac{d}{dx}f_3(x) = \sum_{n=0}^{\infty} \frac{3n x^{3n-1}}{(3n)!} =  \sum_{n=0}^{\infty} \frac{ x^{3n-1}}{(3n-1)!} = \sum_{n=0}^{\infty} \frac{ x^{3n+2}}{(3n+2)!} 
+\]
+
+
+So we arrive at the new theorem
+
+\begin{thm}
+\begin{equation}
+\left(\frac{d}{dx}\right)^j f_k(x) = \sum_{n=0}^{\infty} \frac{x^{kn+k-j}}{(kn+k-j)!}
+\end{equation}
+\end{thm}
+
+Example
+\begin{eqnarray}
+f_5(x) & = & \frac{1}{5}(e^{x}+e^{\omega_5 x} + e^{\omega_5^2 x} + e^{\omega_5^3 x}+e^{\omega_5^4 x})\nonumber\\
+f_5(x) & = & \sum_{n=0}^{\infty} \frac{x^{5n}}{(5n)!}\nonumber
+\\
+\frac{d}{dx} f_5(x) & = & \sum_{n=0}^{\infty} \frac{x^{5n+4}}{(5n+4)!}\nonumber\\
+\frac{d^2}{dx^2} f_5(x) & = & \sum_{n=0}^{\infty} \frac{x^{5n+3}}{(5n+3)!}\nonumber\\
+\frac{d^3}{dx^3} f_5(x) & = & \sum_{n=0}^{\infty} \frac{x^{5n+2}}{(5n+2)!}\nonumber\\
+\frac{d^4}{dx ^4} f_5(x) & = & \sum_{n=0}^{\infty} \frac{x^{5n+1}}{(5n+1)!}
+\end{eqnarray}
+
+
+
+The important thing to note is that as written, these functions are explicit solutions to the differential equations:
+\[
+\left(\frac{d}{dx}\right)^n f = f, f(0)=1,f^{(i)}(0)=0, \forall 0 < i < n.
+\]
+
+
+\section{Exponentiating Permutation Matrices}
+
+
+In this section we will show how to exponentiate all permutation matrices of all orders.  The representations with which we will be working are those that permute the standard basis vectors.  Let $A$ be a permutation matrix which we represent by
+\[
+A e_{i} = e_{a(i)}
+\]
+
+For example if 
+\[
+Ae_1 = e_2, A e_2 = e_1, A e_3 = e_3 
+\]
+
+We will write $A$ as
+\[
+\begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0  & 1
+\end{bmatrix}
+\]
+
+
+If $A$ is a permutation matrix which permutes $n$ standard basis vectors then we shall write is as an $n\times n$ matrix.  The helpful clue here, is that $A$ is idempotent.  That is for some $k\le n$
+\[
+A^k = I
+\]
+
+Let's see what happens when we exponentiate an order $k$ matrix:
+
+\begin{equation}
+e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!} = I + A + \cdots + A^k + A(I+A+A^2 + \cdots ) + \cdots
+\end{equation}
+
+So after $A^k$ we repeat the sequence again.  Let's look at what happens specifically for $A^3=I$.
+
+\begin{eqnarray}
+e^A & = & I + A + \frac{1}{2}A^2 + A(I/6+A/24+A^2/120) + \cdots \nonumber\\
+& = & I(1 + \frac{1}{3!}+ \frac{1}{6!}+\cdots)\nonumber\\
+&   & + A (1+ \frac{1}{4!}+ \frac{1}{7!}+\cdots)\nonumber\\
+&   & + A^2 (\frac{1}{2!}+ \frac{1}{5!}+ \frac{1}{8!}+\cdots)\nonumber\\
+& = & I\cdot f_3(1) + A \cdot f''_3(1) + A^2 \cdot f'_3(1)
+\end{eqnarray}
+
+
+Notice the order of the derivatives above.  The first derivative $f'_3$ lands on the last term.
+
+So let's look at such a matrix:
+\[
+A = \begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0
+\end{bmatrix}
+\]
+
+and 
+
+\[
+A^2 = \begin{bmatrix}
+0 & 0 & 1\\
+1 & 0 & 0\\
+0 & 1 & 0
+\end{bmatrix}
+\]
+
+and  
+\[ A^3 = I
+\]
+
+
+This tells us
+
+\[
+e^A = \begin{bmatrix}
+f_3(1) & f''_3(1) & f'_3(1)\\
+f'_3(1) & f_3(1) & f''_3(1)\\
+f''_3(1) & f'_3(1) & f_3(1)
+\end{bmatrix}
+\]
+
+
+
+This tells us that if $A^k = I$ then
+
+\[
+e^A = \sum_{n=0}^{k} A^n \cdot f^{(k-n)}_k(1)
+\]
+
+
+
+One more example.  
+\[
+f_4(x) = \frac{1}{4}(e^x + e^{ix}+ e^{-x}+e^{-ix}) = \frac{1}{2}(\cosh(x)+\cos(x))
+\]
+
+
+So given a matrix $A$ of order 4, for example
+\[
+A = \begin{bmatrix}
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0\\
+\end{bmatrix}
+\]
+
+Then \begin{equation}
+e^A = \begin{bmatrix}
+f_4(1) & f'''_4(1) & f''_4(1) & f'(1)\\
+f_4'(1) & f_4(1) & f'''_4(1) & f''(1)\\
+f_4''(1) & f'_4(1) & f_4(1) & f'''(1)\\
+f_4'''(1) & f''_4(1) & f'_4(1) & f(1)\\
+\end{bmatrix} = 
+\end{equation}
+
+
+Now let's look into exponentiating permutation matrices in which the entries are not all 1.  Let's recall, for diagonal matrices:
+
+\[
+A = \begin{bmatrix}
+a & 0 & 0\\
+0 & b & 0\\
+0 & 0 & c
+\end{bmatrix} \implies e^A = \begin{bmatrix}
+e^a & 0 & 0\\
+0 & e^b & 0\\
+0 & 0 & e^c
+\end{bmatrix}
+\]
+
+
+Let's look at an example where
+\[
+A = \begin{bmatrix}
+0 & a & 0 & 0\\
+0 & 0 & b & 0\\
+0 & 0 & 0 & c\\
+d & 0 & 0 & 0
+\end{bmatrix}
+\]
+We see in this case that $A^4$ is not the identity, but a closely related matrix
+
+\[
+A^2 = \begin{bmatrix}
+0 & 0 & ab & 0\\
+0 & 0 & 0 & bc\\
+cd & 0 & 0 & 0\\
+0 & ad & 0 & 0
+\end{bmatrix}
+\]
+
+\[
+A^3 = \begin{bmatrix}
+0 & 0 & 0 & abc\\
+bcd & 0 & 0 & 0\\
+0 & acd & 0 & 0\\
+0 & 0 & abd & 0
+\end{bmatrix}
+\]
+
+\[
+A^4 = \begin{bmatrix}
+abcd& 0 & 0 & 0\\
+0 & abcd & 0 & 0\\
+0 & 0 & abcd & 0\\
+0 & 0 & 0 & abcd
+\end{bmatrix} = abcd\cdot I
+\]
+
+
+That tells us
+\begin{eqnarray}
+e^A & = & (I + (abcd)/4! + \cdots + (abcd)^n/(4n!) + \cdots)\\\nonumber
+& + & A(I + (abcd)/5! + \cdots + (abcd)^n/(4n+1)! + \cdots )\\\nonumber
+& + & A^2(I + (abcd)/6! + \cdots + (abcd)^n/(4n+2)! + \cdots )\\\nonumber
+& + & A^3(I + (abcd)/7! + \cdots + (abcd)^n/(4n+3)! + \cdots )  
+\end{eqnarray}
+
+
+Rewriting we have
+\[
+e^A = I\cdot f_4((abcd)^{1/4}) + A\cdot f'''_4((abcd)^{1/4})+A^2\cdot f''_4((abcd)^{1/4})+A^3\cdot f'_4((abcd)^{1/4})
+\]
+
+
+
+\section{Reducing the Order of Differential Equations}
+
+We know that all linear ordinary differential equations can be rewritten as a first order system of equations.  In this case we want to consider differential equations of the form
+\[
+(d^n - x^n)f = \lambda f
+\]
+
+For some real number $\lambda$.  In some cases we may be able to have $\lambda=0$.  That is
+
+\[
+d^n f = x^n f.
+\]
+
+What we've shown before is how to write solutions to 
+\[
+d^n f =f  = f_n(x) = \sum_{j=1}^{\infty} \frac{x^{jn}}{(jn)!}
+\]
+
+Now let's review how to convert a higher order equation into a system of equations.
+
+Consider the ODE
+\[
+y^{(n)} + \sum_{j=0}^{n-1} p_j(x) y^{(j)} = 0
+\]
+
+Then we define
+\[
+y = y_0, y_{i}' = y_{i+1}
+\]
+for all $1<i<n$.  
+
+And we have the final equation
+\[
+y_{n-1}' = y^{(n)} = - \sum_{j=0}^{n-1}p_j(x) y_j
+\]
+
+
+So the system is now rewritten as
+\begin{equation}
+\begin{bmatrix}
+y_0 \\ y_1 \\ \vdots \\ y_{n-1}
+\end{bmatrix}' = \begin{bmatrix}
+0 & 1 & 0 & \dots & 0\\
+0 & 0 & 1 & \dots & 0\\
+\vdots & \vdots & \ddots & \ddots& \vdots\\
+-p_{0} & -p_1 & -p_{2} & \dots & -p_{n-1}
+\end{bmatrix}
+\begin{bmatrix}
+y_0 \\ y_1 \\ \vdots \\ y_{n-1}
+\end{bmatrix}
+\end{equation}
+
+Which we now simply write as
+\begin{equation}
+Y'(x) = A(x) Y(x)
+\end{equation}
+where
+\[
+A_{ij}(x) = \left\{\begin{array}{cc}
+0 & {i<j<n}\\
+1 & {i = j-1}\\
+-p_{j-1}(x) & {i=n}
+\end{array}
+\right.
+\]
+
+
+
+Now in our case $p_0(x) = x^n + \lambda$ and all other $p_n$ are zero.  So we can convert
+\begin{equation}
+d^n f = (x^n+\lambda)f \implies \begin{bmatrix}
+f \\ f' \\ \vdots \\ f^{(n-1)}
+\end{bmatrix}' = 
+\begin{bmatrix}
+0 & 1 & 0 & \dots  & 0\\
+0 & 0 & 1 & \dots & 0\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+x^n+\lambda & 0 & 0 & \dots & 0 
+\end{bmatrix}
+\begin{bmatrix}
+f \\ f' \\ \vdots \\ f^{(n-1)}
+\end{bmatrix}
+\end{equation}
+
+
+
+Now we look into how to solve such equations.  As listed, we only have a general solution.  In the end we intend to solve these equations based on physical boundary conditions and other symmetry conditions.  For now, we'll only be trying to find general solutions and apply boundary condiions later.
+
+As we know from elementary ODEs if $A$ is a constant matrix then the general solution of 
+\[
+Y' = AY \implies Y = e^{\int A}Y_0
+\]
+
+In one dimensional systems this works in general, but in higher dimensions, if $A$ is not constant then we need the following condition:
+\[
+\lbrack A, \int A \rbrack = 0
+\]
+
+There are many cases in which this happens, but far more where this fails.  If $A$ is diagonal then this holds.  Additionally, if $A$ is constant this holds.  The other general case is when 
+\[
+B = k\cdot A \implies \lbrack A,B \rbrack = 0
+\]
+
+
+Let's pretend for a moment that we can solve
+\[
+Y' = AY 
+\]
+by simply integrating $A$ and exponentiating.  Let's see what the possible solution looks like.  Since we already know the solution to 
+\[
+(x^2 - d^2)f = \mu f
+\]
+Since this is the (monic) quantum harmonic oscillator.  In our new terms this translates to
+\[
+d^2 f = (x^2 + \lambda)f
+\] 
+
+And then the matrix equation
+\[
+\begin{bmatrix}
+f \\ f'
+\end{bmatrix}'
+=\begin{bmatrix}
+0 & 1\\ x^2+\lambda & 0
+\end{bmatrix}
+\begin{bmatrix}
+f \\ f'
+\end{bmatrix}
+\]
+
+This tells us
+\[
+A = \begin{bmatrix}
+0 & 1 \\ x^2+\lambda & 0
+\end{bmatrix} \implies
+\int A dx = \begin{bmatrix}
+0 & x \\ x^3/3 + \lambda x & 0
+\end{bmatrix}
+\]
+
+Then we have
+\[
+e^{\int A} = \begin{bmatrix}
+\cosh((x(x^3/3+\lambda x))^{1/2}) & \sinh((x(x^3/3+\lambda x))^{1/2})\\
+\sinh((x(x^3/3+\lambda x))^{1/2}) & \cosh((x(x^3/3+\lambda x))^{1/2})
+\end{bmatrix}
+\]
+
+Let's recall, however, that with physical constraints we require $f(\infty) = 0$.  Recall that 
+\[
+\cosh(x) + \sinh(x) = e^x
+\]
+
+\[
+\cosh(x)-\sinh(x) = e^{-x}
+\]
+
+In this case we see that the solution would be
+\[
+f(x) = f_0 \cosh((x^4/3+\lambda x^2)^{1/2}) + f'_0  \sinh((x^4/3+\lambda x^2)^{1/2})
+\]
+
+Where $f(0)=f_0$ and $f'(0)=f'_0$.  We see that we must have $f_0 = - f'_0$ or the solution will diverge, and since this is nonnormalizable and thus nonphysical.
+
+This leaves us with an approximate solution of
+\[
+f(x) = f_0 \exp\left[-(\frac{x^4}{3}+\lambda x^2)^{1/2} \right]
+\]
+
+Which is asymptotically equivalent to
+\[
+f(x) \sim e^{-ax^2}
+\]
+
+which we know to be the ground state solution.
+
+
+Thus our general case the equation
+\[
+d^n \psi = (x^n + \lambda)\psi
+\]
+
+seems to have a solution in the form
+
+\[
+\psi(x) = \sum_{j=0}^{n-1} \psi^{(j)}_0 f^{(j)}_n(x^{n-1}(\frac{x^{n+1}}{n+1}+\lambda x))^{1/n} 
+\]
+
+Asymptotically it appears as though our solutions become
+
+\[
+\psi(x) \sim e^{-ax^2}
+\]
+
+Perhaps a more complex, but likely more accurate asymptote is
+\[
+\psi(x) \sim \exp\left[-\left(\frac{x^{2n}}{n+1}+\lambda x^n\right)^{1/n}\right]
+\]
+
+
+\section{The Problem with Nonconstant Matrices}
+
+
+Let's recall the general Leibniz rule for derivatives.  We tend to think of a product of two functions and their derivative as
+\[
+(fg)' = f'g+fg'
+\]
+
+Generally speaking it is important to keep the functions in the order we see them.  When the function are real valued then they commute and there is no problem.  But if the functions are matrix valued, then the derivative which keeps things in the correct order still works.
+
+So for an $n$-fold product
+\[
+(\prod_{j=1}^{n} f_j)' = \sum_{i=1}^{n}\left(\prod_{j=1}^{i-1}f_j \cdot f'_{i} \cdot \prod_{j=i+1}^{n}f_j\right)
+\]
+
+So in particular if we have a power of a (nonconstant) matrix
+\[
+(A(t)^3)' = A(t)'A(t)A(t) + A(t)A(t)'A(t) + A(t)A(t)A(t)'
+\]
+
+Now if 
+\[
+\lbrack A , \int A \rbrack \ne 0 
+\]
+then we have to compute this whole sum without having the luxury of commuting variables.
+
+So now back to our solutions from the previous section we have noncommuting matrices unless $A$ is constant, but unfortunately, we have a matrix $A$ with exactly one nonconstant term.
+
+So our solutions don't necessarily hold, they are simply asymptotic solutions.  Let's look directly at the ``solution" for the harmonic oscillator that we derived.
+
+\[
+f(x) = \exp\left[-\left(\frac{x^4}{3} +\lambda x^2\right)^{1/2}\right]
+\]
+The ground state solution we know has $\lambda = -1$
+%x^2 - d^2 = 2E \implies d^2 = x^2-2E
+
+So our apparent ground state is
+\[
+f(x) = \exp\left[-\left(\frac{x^4}{3} - x^2\right)^{1/2}\right]
+\]
+
+Two derivatives gives us
+\[
+f'(x) = -\frac{1}{2}\left(\frac{x^4}{3}-x^2\right)^{-1/2}\left(\frac{4}{3}x^3 - 2x\right) f(x)
+\]
+
+and the second derivative therefore
+\begin{eqnarray*}
+f''(x) &=& \frac{1}{4}\left(\frac{x^4}{3}-x^2\right)^{-3/2}\left(\frac{4}{3}x^3-2x\right)^2 f(x)\\  & &-\frac{1}{2}\left(\frac{x^4}{3}-x^2\right)^{-1/2}\left(4x^2 - 2\right) f(x)\\
+ & &-\frac{1}{2}\left(\frac{x^4}{3}-x^2\right)^{-1/2}\left(\frac{4}{3}x^3 - 2x\right) f'(x)\\
+ & = & f(x)\left[\frac{-2 \sqrt{3} x^3-12 \sqrt{x^2-3} x^2+9 \sqrt{x^2-3}+4 \sqrt{x^2-3} x^4+9 \sqrt{3} x}{3 (x^2-3)^{3/2}}\right]
+\end{eqnarray*}
+
+The last simplification comes from a computer algebra system.  However, if we look closely, we see, in fact, that the leading term is 
+\[
+\frac{x^4\sqrt{x^2-3}}{(x^2-3)^{3/2}} \sim \frac{x^5}{x^3} + \text{ l.o.t.} \sim x^2
+\]
+
+So this result approximates the solution reasonably well, especially when $x$ is large.  However, we see that this is not the exact solution, and the problem arises because the matrix $A(x)$ does not commute with its integral.
+
+
+\section{The Magnus Expansion}
+
+The Magnus exxpansion is a series solution to systems of differential equations given in matrix form. The basic premise is
+\[
+Y' = AY \implies Y = e^{\Omega}Y_0
+\]
+Where $\Omega$ is a matrix related to $A$ by:
+\[
+\left(\frac{d}{dt}e^{\Omega}\right)e^{-\Omega} = A(t)
+\]
+
+
+Unfortunately, in order to properly calculate $\Omega$ we have to expand it in a series:
+\[
+\Omega = \sum_{j=1}^{\infty} \Omega_j
+\]
+
+The tedium of these calculations grows (exponentially) with each corrective term.  Let's look a little bit at how Magnus envisioned his solution.
+
+Suppose 
+\[
+Y(t) = U(t)Y_0
+\]
+then
+
+\[
+Y'(t) = U'(t)Y_0 = A(t)Y(t) = A(t)U(t)Y_0
+\]
+
+So in this case we look for a matrix $U(t)$ that will solve a differential equation as 
+\[
+U'(t) = A(t)U(t)
+\]
+
+Since linear differential equations with constant coefficients have exponential solutions
+\[
+Y(t) = \exp\left[\int A dt\right]
+\]
+We look for a matrix $U(t)$ which is unitary.
+\[
+U(t) = \exp\left[\Omega(t)\right]
+\]
+
+How do we compute such an $\Omega$? 
+
+
+
+
+\end{document}
