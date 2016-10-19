@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+%\usepackage{bbm}
+\begin{document}
+\title{Degeneracy in One Dimensional Quantum Systems: Dynamically Shifted Oscillator}
+\author{Pirooz Mohazzabi and G. Clark Alexander}
+%\affiliation{Department of Mathematics and Physics\\University of Wisconsin-Parkside\\Kenosha, WI 53141, USA}
+%\date{\today} 
+\begin{abstract}
+\vspace{0.5cm}
+We study the quantum dynamically shifted oscillator in one dimension by first showing that no global analytic solution exists. Then using numerical methods, we show that for certain values of the dynamic shift every eigenvalue yields two  eigenfunctions of opposite parity. Finally, we remark that we may replace our potential with a smooth potential yielding a globally analytic solution which gives the same degeneracy.
+\end{abstract}
+\maketitle
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction} Degeneracy is a well-known and well-studied phenomenon in quantum physics, but until relatively recently within the study of quantum mechanics, physical systems exhibiting degeneracy in one dimension have been hard to come by. The present article intends to explicate some of the nuances associated with a system which at first glance seems to have an elementary analytic solution, but whose solution is in fact much more elusive; the dynamically shifted oscillator.
+
+\par While the harmonic oscillator is perhaps the most widely known and well studied system in one-dimensional quantum mechanics, any qualitative change in its potential function leads to
+difficult and intricate questions. Consider for example a ``one-sided'' oscillator with potential
+\begin{equation}
+V(x) = \left\{\begin{array}{ll}\frac{1}{2}kx^2, & \hspace{0.25cm} x\geq 0\\
+\infty, & \hspace{0.25cm} x<0 \end{array}\right.
+\end{equation}
+This system exhibits a similar form of solution to the standard oscillator, but one discovers that only odd solutions exist due to the boundary condition at $x=0$. It is, however, through means such as this that one may begin exploring different oscillators \cite{Gettys-Graben,Janke-Cheng}. For the sake of computability many authors consider symmetric potentials or in the case of the biharmonic oscillator solving each side analytically first and then matching wave functions on particular boundary conditions. As one should expect, the numerical solutions closely match with the analytical solutions.
+  
+\par In addition oscillators which are perturbed at the origin asymptotically act like unperturbed oscillators. None of these solutions, however, have yielded any earth shattering surprises, rather have rehashed in various mathematical techniques for solving ordinary differential equations with a variety of methods inoculated with physical intuition. Because parabolic potentials lend themselves so handily to algebraic, analytic, asymptotic, perturbative, and operator theoretic methods of solution one might suspect 
+that given any oscillatory quantum system a solution is easily at hand.
+
+\par Another suspicion which might naturally arise after a serious study of multiple problems of oscillatory nature is that in order to achieve a degenerate state one must look at oscillators with either higher order potentials or move to higher dimensions. Fortunately or unfortunately depending upon one's outlook the dynamically shifted oscillator is one system which has yet remained elusive. This is a one-dimensional quantum system with potential given by:
+\begin{equation}
+V(x)=\left\{\begin{array}{l}
+\frac{1}{2}k(x+x_0)^2,    \hspace{0.5cm}  x\ge0 \\
+\frac{1}{2}k(x-x_0)^2,	 \hspace{0.5cm}  x<0		\label{DSO}
+\end{array} \right.
+\end{equation}
+where the dynamic shift $x_0$ is a constant, which can be positive or negative. Graphs of this potential are shown in Figure 1. At first glance this appears rather innocuous, but a pair of papers \cite{Hartmann,mohazzabi} have shed light on this example and shown that it behaves differently in many aspects than standard simple oscillation. In attempting a solution for this problem the authors made the same usual assumption of solving each side separately and matching boundary conditions. 
+
+\par While the search for an analytical solution of the dynamically shifted oscillator produced false results, the authors realized that looking for a different aspect of the system turned more fruitful. Let us momentarily turn our attention to our physical intuition and consider the case of $x_0$ being large negative. Depending on scaling we may have potential wells extremely far apart, Chicago and St Louis for example. It seems rather senseless that one potential well could in any way affect the other. These two wells intuitively should produce independent solutions. Indeed, when looking at numerical solutions, one sees that the physical intuition is essentially correct. This, however, did bring a striking question into the context; does this solution produce a one-dimensional degenacy? The answer we purport is a resounding ``YES!''  
+
+\par In their paper, Kar and Parwani \cite{Kar-Parwani} explore the possibility of degenerate bound states in one dimensional systems. Along with Koley and Kar \cite{Koley-Kar}, they present the following bottomless potential, 
+\begin{equation}
+V(x) = -(A_1\cosh^{2\nu}x + A_2\;\mathrm{sech}^2x)		\label{bottomless}
+\end{equation}
+with $\nu>0$ and $A_2 =\displaystyle \frac{\nu}{2}(\frac{\nu}{2}+1)$, as giving two eigenstates of different parity,
+\begin{equation}
+\begin{array}{l}
+\psi_1(x)=\displaystyle\frac{\cos(\sqrt{A_1} \int \cosh^{\nu}x\;dx)}{\cosh^{\nu/2}x} \vspace{0.25cm}\\ 
+\psi_2(x)=\displaystyle\frac{\sin(\sqrt{A_1} \int \cosh^{\nu}x\;dx)}{\cosh^{\nu/2}x} 
+\end{array}
+\end{equation}
+While the potential (\ref{bottomless}) yields two degenerate states, it is somewhat pathological. The question is, is it possible to find a ``simple'' potential in one dimension that produces degenerate states of opposite parity? In this article we address exactly that question and find a rather striking result.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Attempts to Analytically Solve the Dynamically Shifted Oscillator}
+Let us begin by redefining the dynamically shifted oscillator as a dimensionless equation. Defining the following quantities 
+\begin{equation}
+\xi=\left(\frac{m\omega}{\hbar}\right)^{1/2}x, \hspace{0.5cm} \xi_0=\left(\frac{m\omega}{\hbar}\right)^{1/2}x_0, \hspace{0.5cm} \epsilon=\frac{E}{\hbar\omega}
+\end{equation}
+the time-independent equation acquires the form
+\begin{equation}
+\frac{d^2\psi}{d\xi^2}+\left[2\epsilon-(\xi\pm\xi_0)^2\right]\psi=0		\label{SE}
+\end{equation}
+If we continue in this manner and let $u= \xi + \xi_0$ for $\xi \geq 0$ and $u=\xi-\xi_0$ for $\xi<0$ we arrive at the functional form of the harmonic oscillator. Solving each side separately by the standard method we arrive at 
+\begin{equation}
+\psi_n(\xi)=(\pm 1)^n A_n\exp\left[-\frac{(\xi\pm \xi_0)^2}{2}\right]H_n(\xi\pm \xi_0),  \hspace{0.75cm}  n=0,1,2,\cdots	\label{eigenfun}
+\end{equation}
+where the upper and lower signs hold for $\xi \geq 0$ and $\xi<0$, respectively, and $H_n$ are the Hermite polynomials. The corresponding eigenvalues are given by
+\begin{equation}
+\epsilon_n=n+\frac{1}{2},	\hspace{0.75cm}  n=0,1,2,\cdots		\label{eigenval}
+\end{equation}
+
+\par Although Eq.\,(\ref{eigenfun}) seems auspicious, its dubious nature quickly reveals itself! The problem one faces in attempting this solution is matching one-sided wave functions and their derivatives. If we consider the identity of Hermite polynomials: 
+\begin{equation}
+\frac{dH_n(x)}{dx}=2nH_{n-1}(x)
+\end{equation}
+and applying the parity
+\begin{eqnarray}
+H_{2k}(x) &=& H_{2k}(-x)\\
+H_{2k+1}(x)&=& -H_{2k+1}(-x)
+\end{eqnarray}
+we encounter the pair of equations
+\begin{eqnarray}
+A_{2k} H_{2k}(\xi_0) \sinh(\xi_0^2) &=& 0 \\
+A_{2k+1}H_{2k+1}(\xi_0) \cosh(\xi_0^2)&=&0
+\end{eqnarray}
+One sees that the only solutions which allow matching at the origin are $A_n=0$ for all $n.$    This is clearly an absurd result since it 
+implies no eigenfunction can exist except at $\xi_0=0$. If we again appeal to intuition we realize that two wells ``very far'' apart 
+$(\xi_0 << 0)$ will have two separate oscillators and the eigenfunctions will be asymptotically unperturbed.
+
+\par The second attempt was to use the factorization method in the energy representation. The lowering and raising operators are defined as usual by:
+\begin{eqnarray}
+\begin{array}{l}
+\hat{a}=\displaystyle\frac{1}{\sqrt{2}}\left(\frac{\hat{x}\pm\hat{x}_0}{\lambda}+\frac{i\lambda}{\hbar}\hat{p}\right)  \vspace{0.2cm}\\
+\hat{a}^\dagger=\displaystyle\frac{1}{\sqrt{2}}\left(\frac{\hat{x}\pm\hat{x}_0}{\lambda}-\frac{i\lambda}{\hbar}\hat{p}   \right)
+\end{array}
+\end{eqnarray}
+where $\lambda=\left(\hbar/m\omega\right)^{1/2}$ is a constant with the dimension of length, and the upper and lower signs hold for $x\geq 0$ and $x<0$, respectively.
+As one might expect, the equation 
+\begin{equation}
+\hat{H}=\frac{\hat{p}^2}{2m}+\frac{1}{2}m\omega^2(\hat{x}\pm \hat{x}_0)^2		\label{Hamiltonian}
+\end{equation}
+reduces to the standard
+\begin{equation}
+\hat{H}=\hbar\omega\left(\hat{a}^\dagger\hat{a}+\frac{1}{2}\right) 
+\end{equation}
+Again, we recover the Hamiltonian of the simple quantum harmonic oscillator. And, if one attempts to solve this by matching solutions at the origin, the normalization constants 
+will reveal themselves to be $A_n=0$. These results not only disagree with physical reasoning, but also disagree with numerical results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Degeneracy Conditions in One-Dimension}
+Consider the following function 
+\begin{equation}
+f(x) = \left\{ \begin{array}{cl} x^{2n}, \hspace{0.2cm}& x \geq 0 \\
+-x^{2n}, \hspace{0.2cm}& x < 0 \end{array}\right. 
+\end{equation}
+On any open interval away from zero we see that the Wronskian $W(x^{2n},f(x))=0$. In fact these are the same functions up to a negative away from the origin. However, when we consider the Wronskian on an interval containing the origin, it is nonzero. Given this fact, it is easy to construct degenerate quantum mechanical systems in one-dimension.
+
+\par For example, consider the following non-normalized stationary wave functions:
+\begin{eqnarray}
+\psi_a(x) &=&x^{2n}e^{-x^2/2}\\
+ \psi_b(x) &=& f(x)\,e^{-x^2/2}
+\end{eqnarray}
+Here, $\psi_a(x)$ is even and $\psi_b(x)$ is odd, but they both satisfy the following unitless Schr\"{o}dinger equation:
+\begin{equation}
+-\frac{1}{2}\frac{d^2\psi}{dx^2}+\left[\frac{1}{2}x^2+\frac{n(2n-1)}{x^2}\right]\psi=\frac{4n+1}{2}\;\psi
+\end{equation}
+We see, that when $n=0$ we recover the ground state of the harmonic oscillator. However, when $n>0$ we have a singularity in the potential. The wave functions are in fact degenerate, but we need not concern ourselves with the origin since the potential function is not continuous there. This argument was undertaken by Cohen and Kuharetz \cite{Cohen-Kuharetz}.
+
+\par The stipulations given by Kar and Parwani \cite{Kar-Parwani} lead to the conclusion that bound states in a one-dimensional quantum system cannot be degenerate unless the following criteria are met:
+\begin{enumerate}
+\item $V(x)$ is a continuous function,
+\item $V(x)$ is unbounded from below,
+\item The eigenfunction $\psi$ has infinite derivative as $x\rightarrow \infty$.
+\end{enumerate}
+The third criterion emphasizes that the momentum is divergent, which corresponds to divergent kinetic energy. The only way to maintain a finite total energy is to have unbounded negative potential energy. While the constructions in \cite{Kar-Parwani} maintain all these criteria, we have discovered yet another degenerate bound state system with continuous potential and smooth wave functions with convergent momentum, but with a potential bounded from below, although unbounded from above. Thus, this system meets the first criterion stipulated above, but violates the other two. 
+
+\par Again, one must appeal to physical intuition to expect a degenerate state to exist. In a double-potential well system, one might expect that as the wells get very far apart we have two independent systems. In fact, we may as well write the system as a two dimensional system, in which degeneracy is certainly possible, even in cases as simple as the harmonic oscillator. Strangely though, in our case, we see degeneracy when the wells are ``close.''  When we move the bottom of each well a mere six units apart, we begin to observe degenerate wave functions for the ground state. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Energy Eigenfunctions and Eigenvalues of the Dynamically Shifted Oscillator}
+Consider first, the potential energy function of the dynamically shifted oscillator. This potential is continuous and differentiable everywhere except at the origin. Furthermore, the potential is even and therefore allows the bound state solutions to be chosen with definite parity. From here, we solve this differential equation numerically using the Euler-Cromer algorithm \cite{Gould-Tobochnik} and expose the even and odd bound state eigenfunctions and corresponding eigenvalues.
+
+\par In Figure 2 we see $\psi_0$ corresponding to different values of the reduced shift $\xi_0$. Notice how the eigenfunction splits into two peaks as $\xi_0$ decreases from $1$ to $-3$. An interesting effect we see is that the corresponding eigenvalues behave as we might expect when $\xi_0=1$, that is, $\epsilon_0=1.4999$. As we anticipate when the potential energy is raised by one unit (over that of the harmonic oscillator), the energy eigenvalue rises by one. However, when $\xi_0$ decreases to $-1$ and $-2$ the energy eigenvalues drop below the standard ground state solution of $\epsilon_0=\frac{1}{2}$. As we decrease $\xi_0$ further to $-3$, we nearly recover the original ground state eigenvalue of the harmonic oscillator.
+
+\par Turning to Figure 3 we see the evolution of the first excited state $\psi_1$ as a function of the reduced dynamic shift. Similar to the ground state, $\psi_1$ appears to split into two separate waves as $\xi_0$ becomes increasingly negative. The figure, however, does not seem to show the corresponding eigenvalues hitting a minimum. Notice the peculiarity happening with $\epsilon_1$ as $\xi_0$ becomes increasingly more negative. Looking to Figure 10, we see that $\epsilon_0$ and $\epsilon_1$ both approach $\frac{1}{2}$ but $\epsilon_0$ from below and $\epsilon_1$ from above.
+
+\par Figures 4 and 5 show the evolutions of $\psi_2$ and $\psi_3$ respectively, again as a function of the reduced dynamic shift $\xi_0$. The values of $\epsilon_2$ and $\epsilon_3$ exhibit markedly similar behaviors to those of  $\epsilon_0$ and $\epsilon_1$, but with both values now approaching $1.5$.
+
+\par Turning our attention to Figure 6, we begin to see degenerate behavior. When our dynamic shift is ``large'' negative, in this case $\xi_0=-5$, then we see $\epsilon_0 = 0.5$ and there are two eigenfunctions, one of even parity and one of odd parity. However, both eigenfunctions are locally \textit{even} about $\pm \xi_0$.
+
+\par Figures 7, 8, and 9 further promulgate the evidence that the dynamically shifted oscillator does indeed exhibit degenerate behavior. Following suit from Figure 6 we see the that eigenfunctions $\psi_{2k}$ are locally \textit{even} and $\psi_{2k+1}$ are locally \textit{odd} about $\xi_0$.
+
+\par Finally, Figure 10 explicitly reveals how the eigenvalues split. The eigenvalues of the dynamically shifted oscillator bifurcate with respect to the dynamic shift. The ``upper'' degenerate eigenvalues correspond to the odd eigenfunctions, whereas the ``lower'' eigenvalues correspond to the even eigenfunctions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+While the work of Kar and Parwani \cite{Kar-Parwani} elucidates certain situations in which bound degenerate states may exist in one dimensional systems, we have seen that the dynamically shifted oscillator exhibits degeneracy without satisfying several of the hypotheses previously mentioned. This oscillator seems rather innocuous at first, but is not easily solved by analytic methods. The numerical algorithm used shows the analytic solutions for the harmonic oscillator and agrees with solutions that one would expect when $\xi_0>0$ using similar techniques from Gettys and Graben \cite{Gettys-Graben}, Janke and Cheng \cite{Janke-Cheng}, and Hartmann \cite{Hartmann}. The question naturally arises as to whether the solutions obtained herein will agree with analytic solutions or whether we have seen a true degeneracy. In fact, the results of this paper seemingly disagree with a ``theorem.''  We propose that whether or not this system is truly analytically degernate is immaterial with respect to the physical system. What one sees is that the ``degenerate'' eigenvalues become as close as one could desire. While it may in fact be the case that the ``upper'' eigenvalues are always strictly greater than the ``lower'' ones, we maintain that this would be impossible to detect experimentally. Finally, this degeneracy agrees with physical reasoning insofar as we should not expect that two oscillators that are separated by a large distance with equal energy will be dependent upon each other. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+\bibitem{Gettys-Graben} W. E. Gettys and H. W. Graben, ``Quantum solution for the biharmonic oscillator,'' \textit{Am. J. Phys.} \textbf{43}, 626-629 (1975).
+\bibitem{Janke-Cheng} W. Janke and B. K. Cheng, ``Statistical properties of a harmonic plus a delta-potential,'' \textit{Physics Letters A}, \textbf{129}, 140-144 (1988).
+\bibitem{Hartmann} W. M. Hartmann, ``The dynamically shifted oscillator,'' \textit{Am. J. Phys.} \textbf{54}, 28-32 (1986).
+\bibitem{mohazzabi} P. Mohazzabi, ``Theory and examples of intrinsically nonlinear oscillators,'' \textit{Am. J. Phys.} \textbf{72}, 492-498 (2004).
+\bibitem{Kar-Parwani} S. Kar and R. R. Parwani, ``Can degenerate bound states occur in one-dimensional
+quantum mechanics?'' \textit{Europhys. Lett.} \textbf{80} (2007) 30004.
+\bibitem{Koley-Kar} R. Koley and S. Kar, \textit{Phys. Lett. A}, \textbf{363}, 369 (2007).
+\bibitem{Cohen-Kuharetz} J.M. Cohen and B. Kuharetz, J. Math. Phys. 34, 12 (1993).
+ 
+
+
+
+
+\bibitem{Gould-Tobochnik} H. Gould and J. Tobochnik, \textit{An Introduction to Computer Simulation Methods} (Addison-Wesley, New York, 1996), second edition, p. 630.
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{FIGURE CAPTIONS}
+\vspace{-0.25cm}
+\noindent\textbf{Figure 1}~- Dimensionless plots of the dynamically shifted oscillator for positive and negative dynamic shifts.\\
+\textbf{Figure 2}~- Ground-state eigenfunction of the dynamically shifted oscillator for different values of the dynamic shift $\xi_0$.\\ 
+\textbf{Figure 3}~- The first excited state eigenfunction of the dynamically shifted oscillator for different values of the dynamic shift $\xi_0$.\\
+\textbf{Figure 4}~- Evolutions of the second excited state eigenfunction of the dynamically shifted oscillator as a function of the dynamic shift $\xi_0$.\\
+\textbf{Figure 5}~- Evolutions of the third excited state eigenfunction of the dynamically shifted oscillator as a function of the dynamic shift $\xi_0$.\\
+\textbf{Figure 6}~- The even and odd ground state eigenfunctions of the dynamically shifted oscillator for a ``large'' negative dynamic shift, in this case $\xi_0=-5$. Note that both eigenfunctions are ``locally'' even.\\
+\textbf{Figure 7}~- The even and odd first excited state eigenfunctions of the dynamically shifted oscillator for a ``large'' negative dynamic shift, in this case $\xi_0=-5$. Note that both eigenfunctions are ``locally'' odd.\\
+\textbf{Figure 8}~- The even and odd second excited state eigenfunctions of the dynamically shifted oscillator for a ``large'' negative dynamic shift, in this case $\xi_0=-5$. Note that both eigenfunctions are ``locally'' even.\\
+\textbf{Figure 9}~- The even and odd third excited state eigenfunctions of the dynamically shifted oscillator for a ``large'' negative dynamic shift, in this case $\xi_0=-5$. Note that both eigenfunctions are ``locally'' odd.\\
+\textbf{Figure 10}~- Bifurcation of energy eigenvalues of the dynamically shifted oscillator with respect to the dynamic shift.
+\end{document}
